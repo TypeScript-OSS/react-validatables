@@ -98,10 +98,56 @@ const ageValidator = useValidator(age, () =>
   )
 );
 
-const formValidator = useValidator([nameValidator, ageValidator], (validators) => checkAllOf(validators));
+const formValidator = useValidator([nameValidator, ageValidator], (validators) => validators);
 ```
 
 As your use cases become more complex, you'll start to build reusable, composable validators.
+
+## Conditional Validation
+
+There are many cases where validation logic needs to be dynamic.  With `react-validatables`, there are two main ways to introduce dynamism:
+
+- validator creation
+- validator disabling bindings
+
+The validator creation function is called every time validation is performed, so the rules you setup can be changed anytime.
+
+Validators can be disabled using one or more of `disabledUntil`, `disabledWhile`, and/or `disabledWhileUnmodifiedBindings`.  When a validator is disabled, it it always considered to be valid.  All of these options takes one or more bindings, so validators can be disabled/enabled very dynamically.
+
+`disabledWhileUnmodifiedBindings` helps create more friendly forms by, for example, not providing feedback on inputs that the user hasn't modified yet.  Otherwise, in the common case, all fields would initially be in an error state, which isn't necessarily useful.  Consider using `disabledWhileUnmodifiedBindings` on all or most validators directly associated with inputs (see Final Validation section below as well).
+
+### Example
+
+In the following example, we use `disabledWhileUnmodifiedBindings` so that `firstNameValidator` is disabled until `firstName` is modified.  `firstName` is usually modified by calling `set`.
+
+```typescript
+const firstName = useBinding(() => '', { id: 'firstName', detectChanges: true });
+const firstNameValidator = useValidator(firstName, makeRequiredStringChecker, { disabledWhileUnmodified: firstName });
+```
+
+## Final Validation
+
+In addition to interactive validation, we often need "final" validation before, for example, submitting data to a server.
+
+During interactive validation, we often have `disabledWhileUnmodifiedBindings` associated with inputs.  However, if a user tries to submit a form with incomplete data, where they've accidentally skipped a field, for example, we then want to make sure we give clear feedback at that point.  The `finalizeValidation` utility is used for these cases and to generally wait for validation to finish.
+
+```typescript
+const onDoneClick = () =>
+  finalizeValidation(formValidator, {
+    bindings: { firstName, lastName },
+    onValid: ({ firstName, lastName }) => { … }
+  });
+```
+
+`finalizeValidation` generally:
+
+- marks the specified bindings as modified if they're not already
+- for bindings newly marked as modified, calls `triggerChangeListeners`, which in turn resets the associated validators
+- locks the specified bindings
+- waits for the validator to finish
+- extracts the specified binding's values
+- unlocks the specified bindings
+- calls either `onValid` or `onInvalid`
 
 ## Extension
 

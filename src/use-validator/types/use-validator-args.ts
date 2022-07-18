@@ -18,7 +18,8 @@ export interface UseValidatorArgs extends LimiterOptions {
    * If any of the specified bindings are unmodified, the validator is disabled and so it will always result in "validity".
    *
    * Note: if updating the modification state of these bindings without updating their values, you will need to directly call `reset` on
-   * this validator when ready to revalidate, since modification state changes on bindings don't trigger change callbacks.
+   * this validator, or explicitly call `triggerChangeListeners` on the bindings, when ready to revalidate, since modification state changes
+   * on bindings don't trigger change callbacks.
    */
   disabledWhileUnmodified?: ReadonlyBinding | BindingArrayDependencies;
 }

@@ -75,28 +75,26 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
 
   return useDerivedWaitable(
     dependencies,
-    {
-      ifLoaded: async (values, dependencies, _setFailure, wasReset): Promise<ValidationResult | undefined> => {
-        if (wasReset()) {
-          return undefined;
-        }
+    async (values, dependencies, _setFailure, wasReset): Promise<ValidationResult | undefined> => {
+      if (wasReset()) {
+        return undefined;
+      }
 
-        if (isDisabled()) {
-          return disabledState;
-        }
+      if (isDisabled()) {
+        return disabledState;
+      }
 
-        const args: ValidatorArgs = { wasReset };
+      const args: ValidatorArgs = { wasReset };
 
-        const resolvedValidators = await validators(values, dependencies, args);
-        if (wasReset()) {
-          return undefined;
-        }
+      const resolvedValidators = await validators(values, dependencies, args);
+      if (wasReset()) {
+        return undefined;
+      }
 
-        if (resolvedValidators !== undefined) {
-          return validate(resolvedValidators, values, args);
-        } else {
-          return validState;
-        }
+      if (resolvedValidators !== undefined) {
+        return validate(resolvedValidators, values, args);
+      } else {
+        return validState;
       }
     },
     {

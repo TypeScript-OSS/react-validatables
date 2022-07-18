@@ -47,7 +47,8 @@ describe('useCallbackRef', () => {
         value.set(2);
         await waitFor(() => expect(rootElement.innerHTML).toBe('<div><span>3-3</span></div>'));
 
-        expect(numUseEffectCallsWithRegularCallback.current).toBe(2);
+        await waitFor(() => expect(numUseEffectCallsWithRegularCallback.current).toBe(2));
+
         expect(lastValueInUseEffectWithRegularCallback.current).toBe(3);
         expect(numUseEffectCallsWithCallbackRef.current).toBe(1);
         expect(lastValueInUseEffectWithCallbackRef.current).toBe(1);
