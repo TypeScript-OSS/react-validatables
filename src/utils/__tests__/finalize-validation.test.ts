@@ -1,5 +1,5 @@
 import { waitFor } from '@testing-library/react';
-import { useBinding } from 'react-bindings';
+import { useBinding, useDerivedBinding } from 'react-bindings';
 
 import { runInDom, sleep } from '../../__test_dependency__';
 import { useValidator } from '../../use-validator/use-validator';
@@ -23,6 +23,8 @@ describe('finalizeValidation', () => {
         { id: 'bValidator', disabledWhileUnmodified: b }
       );
 
+      const c = useDerivedBinding({ a, b }, ({ a, b }) => `${a}+${b}`, { id: 'test3' });
+
       const formValidator = useValidator([aValidator, bValidator], (validators) => validators, { id: 'formValidator' });
 
       onMount(async () => {
@@ -34,17 +36,18 @@ describe('finalizeValidation', () => {
 
         const result1 = await new Promise((resolve) => {
           finalizeValidation(formValidator, {
-            bindings: { a, b },
-            onValid: ({ a, b }) => {
-              resolve(`valid:${a}:${b}`);
+            fieldBindings: { a, b },
+            additionalDependencies: { c },
+            onValid: ({ a, b }, { c }) => {
+              resolve(`valid:${a}:${b}:${c}`);
             },
-            onInvalid: ({ a, b }) => {
-              resolve(`invalid:${a}:${b}`);
+            onInvalid: ({ a, b }, { c }) => {
+              resolve(`invalid:${a}:${b}:${c}`);
             }
           });
         });
 
-        expect(result1).toBe('invalid::');
+        expect(result1).toBe('invalid:::+');
 
         a.set('hello');
         b.set('world');
@@ -57,17 +60,18 @@ describe('finalizeValidation', () => {
 
         const result2 = await new Promise((resolve) => {
           finalizeValidation(formValidator, {
-            bindings: { a, b },
-            onValid: ({ a, b }) => {
-              resolve(`valid:${a}:${b}`);
+            fieldBindings: { a, b },
+            additionalDependencies: { c },
+            onValid: ({ a, b }, { c }) => {
+              resolve(`valid:${a}:${b}:${c}`);
             },
-            onInvalid: ({ a, b }) => {
-              resolve(`invalid:${a}:${b}`);
+            onInvalid: ({ a, b }, { c }) => {
+              resolve(`invalid:${a}:${b}:${c}`);
             }
           });
         });
 
-        expect(result2).toBe('valid:hello:world');
+        expect(result2).toBe('valid:hello:world:hello+world');
 
         expect(a.get()).toBe('hello9');
       });
