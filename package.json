@@ -1,6 +1,6 @@
 {
   "name": "react-validatables",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Validation tools for React built on react-waitables",
   "keywords": [
     "bindings",
