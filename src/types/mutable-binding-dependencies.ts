@@ -1,4 +1,4 @@
-import { Binding } from 'react-bindings';
+import type { Binding } from 'react-bindings';
 
 export type MutableBindingArrayDependencies = Array<Binding | undefined> | [Binding];
 

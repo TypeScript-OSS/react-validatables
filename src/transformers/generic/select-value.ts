@@ -1,8 +1,8 @@
-import type { Validator, ValidatorArgs, ValidatorFunction } from '../../validator/types/validator';
-import { validate } from '../../validators/generic/logical/check-all-of';
+import type { ValidationChecker, ValidationCheckerArgs, ValidatorCheckerFunction } from '../../validator/types/validation-checker';
+import { checkValidity } from '../../validators/generic/logical/check-all-of';
 
 /** Selects a different value to continue validation with */
 export const selectValue =
-  <T>(selectedValue: T, validator: Validator<T>): ValidatorFunction<any> =>
-  (_value: any, args: ValidatorArgs) =>
-    validate(validator, selectedValue, args);
+  <T>(selectedValue: T, checker: ValidationChecker<T>): ValidatorCheckerFunction<any> =>
+  (_value: any, args: ValidationCheckerArgs) =>
+    checkValidity(checker, selectedValue, args);

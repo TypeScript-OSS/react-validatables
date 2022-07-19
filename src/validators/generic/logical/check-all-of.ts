@@ -1,10 +1,10 @@
-import type { TypeOrDeferredType } from 'react-bindings';
-import { TypeOrPromisedType } from 'react-waitables';
+import type { TypeOrPromisedType } from 'react-waitables';
 
 import { validState } from '../../../consts/basic-validation-results';
 import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
-import type { ValidationResult } from '../../../types/validation-result';
-import type { Validator, ValidatorArgs, ValidatorFunction } from '../../../validator/types/validator';
+import type { ValidationChecker, ValidationCheckerArgs, ValidatorCheckerFunction } from '../../../validator/types/validation-checker';
+import type { ValidationError } from '../../../validator/types/validation-error';
+import type { ValidationResult } from '../../../validator/types/validation-result';
 
 /**
  * Requires that all of the specified validators are satisfied.
@@ -13,7 +13,7 @@ import type { Validator, ValidatorArgs, ValidatorFunction } from '../../../valid
  * validator's error.
  */
 export const checkAllOf =
-  <T>(validators: Array<Validator<T> | undefined>, validationError?: TypeOrDeferredType<string>): ValidatorFunction<T> =>
+  <T>(validators: Array<ValidationChecker<T> | undefined>, validationError?: ValidationError): ValidatorCheckerFunction<T> =>
   async (value, args) => {
     const { wasReset } = args;
 
@@ -33,7 +33,7 @@ export const checkAllOf =
           return undefined;
         }
 
-        const result = await validate(validator, value, args);
+        const result = await checkValidity(validator, value, args);
         if (!result.isValid) {
           stop();
         }
@@ -51,9 +51,13 @@ export const checkAllOf =
     return validState;
   };
 
-export const validate = <T>(validator: Validator<T>, value: T, args: ValidatorArgs): TypeOrPromisedType<ValidationResult> =>
-  typeof validator === 'function'
-    ? validator(value, args)
-    : Array.isArray(validator)
-    ? validate<T>(checkAllOf<T>(validator), value, args)
-    : validator;
+export const checkValidity = <T>(
+  checker: ValidationChecker<T>,
+  value: T,
+  args: ValidationCheckerArgs
+): TypeOrPromisedType<ValidationResult> =>
+  typeof checker === 'function'
+    ? checker(value, args)
+    : Array.isArray(checker)
+    ? checkValidity<T>(checkAllOf<T>(checker), value, args)
+    : checker;

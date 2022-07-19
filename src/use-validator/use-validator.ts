@@ -4,9 +4,10 @@ import { InferOptionalWaitableAndBindingValueTypes, TypeOrPromisedType, useDeriv
 import { disabledState, validState } from '../consts/basic-validation-results';
 import { useCallbackRef } from '../internal-hooks/use-callback-ref';
 import { normalizeAsArray } from '../internal-utils/array-like';
-import type { ValidationResult } from '../types/validation-result';
-import type { Validator, ValidatorArgs } from '../validator/types/validator';
-import { validate } from '../validators/generic/logical/check-all-of';
+import type { ValidationChecker, ValidationCheckerArgs } from '../validator/types/validation-checker';
+import type { ValidationResult } from '../validator/types/validation-result';
+import type { Validator } from '../validator/types/validator';
+import { checkValidity } from '../validators/generic/logical/check-all-of';
 import { areAnyBindingsFalsey } from './internal/are-any-bindings-falsey';
 import { areAnyBindingsTruthy } from './internal/are-any-bindings-truthy';
 import type { UseValidatorArgs } from './types/use-validator-args';
@@ -14,13 +15,14 @@ import type { UseValidatorArgs } from './types/use-validator-args';
 const emptyBindingsArray = Object.freeze([]) as unknown as Array<ReadonlyBinding | undefined>;
 
 /**
- * A validator is a waitable that produces a `ValidationResult`, indicating validity or a problem, if all of its dependencies are loaded (or
- * if the validator is disabled).
+ * A validator is a waitable that produces a `ValidationResult`, indicating either validity or a problem, if all of its dependencies are
+ * loaded (or if the validator is disabled).
  *
  * Basic example:
  *
  * ```
  * const myBindingValidator = useValidator(myBinding, checkEquals('hello', 'expected "hello"'), { id: 'myBindingValidator' });
+ * console.log('isValid', myBindingValidator.value.get()?.isValid);
  * ```
  */
 export const useValidator = <DependenciesT extends WaitableDependencies>(
@@ -28,8 +30,8 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
   validators: (
     dependencyValues: InferOptionalWaitableAndBindingValueTypes<DependenciesT>,
     dependencies: DependenciesT,
-    args: ValidatorArgs
-  ) => TypeOrPromisedType<Validator<InferOptionalWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
+    args: ValidationCheckerArgs
+  ) => TypeOrPromisedType<ValidationChecker<InferOptionalWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
   {
     id = 'validator',
     disabledUntil: disabledUntilBindings,
@@ -42,7 +44,7 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     priority,
     queue
   }: UseValidatorArgs = {}
-) => {
+): Validator => {
   const limiterOptions = { limitMSec, limitMode, limitType, priority, queue };
 
   /** If any of these bindings are falsey, this validator is disabled */
@@ -84,7 +86,7 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
         return disabledState;
       }
 
-      const args: ValidatorArgs = { wasReset };
+      const args: ValidationCheckerArgs = { wasReset };
 
       const resolvedValidators = await validators(values, dependencies, args);
       if (wasReset()) {
@@ -92,7 +94,7 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
       }
 
       if (resolvedValidators !== undefined) {
-        return validate(resolvedValidators, values, args);
+        return checkValidity(resolvedValidators, values, args);
       } else {
         return validState;
       }

@@ -5,10 +5,10 @@ import { runInDom, sleep } from '../../../../__test_dependency__';
 import { validState } from '../../../../consts/basic-validation-results';
 import { defaultValidationError } from '../../../../consts/default-validation-error';
 import { useValidator } from '../../../../use-validator/use-validator';
-import type { Validator, ValidatorFunction } from '../../../../validator/types/validator';
+import type { ValidationChecker, ValidatorCheckerFunction } from '../../../../validator/types/validation-checker';
 import { checkStringNotEmpty } from '../../../string/string-length';
 import { checkNotEquals } from '../../equals';
-import { checkAllOf, validate } from '../check-all-of';
+import { checkAllOf, checkValidity } from '../check-all-of';
 
 describe('checkAllOf', () => {
   it('should work', () =>
@@ -74,7 +74,7 @@ describe('checkAllOf', () => {
       const myBinding = useBinding(() => '', { id: 'myBinding' });
 
       let numResets = 0;
-      const wrapValidator = (validator: Validator<string>): ValidatorFunction<string> =>
+      const wrapValidator = (checker: ValidationChecker<string>): ValidatorCheckerFunction<string> =>
         jest.fn(async (value, args) => {
           await sleep(10);
           if (args.wasReset()) {
@@ -82,7 +82,7 @@ describe('checkAllOf', () => {
             return validState;
           }
 
-          return validate(validator, value, args);
+          return checkValidity(checker, value, args);
         });
       const wrappedValidator = wrapValidator(checkAllOf([checkStringNotEmpty(), checkNotEquals('hello')]));
 

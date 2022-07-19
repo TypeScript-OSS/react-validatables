@@ -1,5 +1,5 @@
-import { Binding, EmptyObject, InferBindingValueTypes, isBinding, lockBindingsAndDo, TypeOrDeferredType } from 'react-bindings';
-import { Waitable } from 'react-waitables';
+import { Binding, EmptyObject, InferBindingValueTypes, isBinding, lockBindingsAndDo } from 'react-bindings';
+import type { Waitable } from 'react-waitables';
 
 import { normalizeAsArray } from '../internal-utils/array-like';
 import { extractBindingDependencyValues } from '../internal-utils/extract-binding-dependency-values';
@@ -8,18 +8,19 @@ import {
   MutableBindingDependencies,
   NamedMutableBindingDependencies
 } from '../types/mutable-binding-dependencies';
-import { ValidationResult } from '../types/validation-result';
+import type { ValidationError } from '../validator/types/validation-error';
+import type { ValidationResult } from '../validator/types/validation-result';
 
 const emptyDependencies = Object.freeze({} as EmptyObject);
 
 /**
- * Marks all specified bindings as "modified", locks them, and then waits for the specified validator to finish.
+ * Marks all specified bindings as "modified", locks them, and then waits for the specified checker to finish.
  *
  * This is generally used for form-level validation before, for example, submitting to a server.
  *
  * The appropriate callback will be made once the validator is finished.
  *
- * @returns A function that can be used to cancel the validation
+ * @returns A function that can be used to cancel the requested validation.
  */
 export const finalizeValidation = <DependenciesT extends MutableBindingDependencies = Record<string, never>>(
   validator: Waitable<ValidationResult>,
@@ -29,11 +30,7 @@ export const finalizeValidation = <DependenciesT extends MutableBindingDependenc
     onValid
   }: {
     bindings?: DependenciesT;
-    onInvalid?: (
-      bindingValues: InferBindingValueTypes<DependenciesT>,
-      bindings: DependenciesT,
-      validationError: TypeOrDeferredType<string>
-    ) => void;
+    onInvalid?: (bindingValues: InferBindingValueTypes<DependenciesT>, bindings: DependenciesT, validationError: ValidationError) => void;
     onValid?: (bindingValues: InferBindingValueTypes<DependenciesT>, bindings: DependenciesT) => void;
   }
 ) => {

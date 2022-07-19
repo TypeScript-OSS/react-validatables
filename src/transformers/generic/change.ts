@@ -1,8 +1,8 @@
-import type { Validator, ValidatorArgs, ValidatorFunction } from '../../validator/types/validator';
-import { validate } from '../../validators/generic/logical/check-all-of';
+import type { ValidationChecker, ValidationCheckerArgs, ValidatorCheckerFunction } from '../../validator/types/validation-checker';
+import { checkValidity } from '../../validators/generic/logical/check-all-of';
 
-/** Runs the specified transform function on the value and then calls the specified validator on the transformed value */
+/** Runs the specified transform function on the value and then calls the specified checker on the transformed value */
 export const change =
-  <T, R>(transform: (value: T) => R, validator: Validator<R>): ValidatorFunction<T> =>
-  (value: T, args: ValidatorArgs) =>
-    validate(validator, transform(value), args);
+  <T, R>(transform: (value: T) => R, checker: ValidationChecker<R>): ValidatorCheckerFunction<T> =>
+  (value: T, args: ValidationCheckerArgs) =>
+    checkValidity(checker, transform(value), args);

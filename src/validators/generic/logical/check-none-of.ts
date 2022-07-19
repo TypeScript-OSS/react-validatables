@@ -1,11 +1,10 @@
-import type { TypeOrDeferredType } from 'react-bindings';
-
 import { validState } from '../../../consts/basic-validation-results';
 import { defaultValidationError } from '../../../consts/default-validation-error';
 import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
-import type { ValidationResult } from '../../../types/validation-result';
-import type { Validator, ValidatorFunction } from '../../../validator/types/validator';
-import { validate } from './check-all-of';
+import type { ValidationChecker, ValidatorCheckerFunction } from '../../../validator/types/validation-checker';
+import type { ValidationError } from '../../../validator/types/validation-error';
+import type { ValidationResult } from '../../../validator/types/validation-result';
+import { checkValidity } from './check-all-of';
 
 /**
  * Requires that none of the specified validators are satisfied.
@@ -14,9 +13,9 @@ import { validate } from './check-all-of';
  */
 export const checkNoneOf =
   <T>(
-    validators: Array<Validator<T> | undefined>,
-    validationError: TypeOrDeferredType<string> = defaultValidationError
-  ): ValidatorFunction<T> =>
+    validators: Array<ValidationChecker<T> | undefined>,
+    validationError: ValidationError = defaultValidationError
+  ): ValidatorCheckerFunction<T> =>
   async (value, args) => {
     const { wasReset } = args;
 
@@ -36,7 +35,7 @@ export const checkNoneOf =
           return undefined;
         }
 
-        const result = await validate(validator, value, args);
+        const result = await checkValidity(validator, value, args);
         if (result.isValid) {
           stop();
         }

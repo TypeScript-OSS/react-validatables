@@ -1,4 +1,4 @@
-import type { TypeOrDeferredType } from 'react-bindings';
+import type { ValidationError } from './validation-error';
 
 /** The result of validating a value */
 export type ValidationResult =
@@ -12,5 +12,5 @@ export type ValidationResult =
   | {
       isDisabled?: false;
       isValid: false;
-      validationError: TypeOrDeferredType<string>;
+      validationError: ValidationError;
     };
