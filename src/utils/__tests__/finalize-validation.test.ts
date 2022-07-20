@@ -3,7 +3,7 @@ import { useBinding, useDerivedBinding } from 'react-bindings';
 
 import { runInDom, sleep } from '../../__test_dependency__';
 import { useValidator } from '../../use-validator/use-validator';
-import { checkStringNotEmpty } from '../../validators/string/string-length';
+import { checkStringNotEmpty } from '../../validation-checkers/string/string-length';
 import { finalizeValidation } from '../finalize-validation';
 
 describe('finalizeValidation', () => {

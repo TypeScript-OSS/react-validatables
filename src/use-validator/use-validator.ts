@@ -4,10 +4,10 @@ import { InferOptionalWaitableAndBindingValueTypes, TypeOrPromisedType, useDeriv
 import { disabledState, validState } from '../consts/basic-validation-results';
 import { useCallbackRef } from '../internal-hooks/use-callback-ref';
 import { normalizeAsArray } from '../internal-utils/array-like';
+import { checkValidity } from '../validation-checkers/generic/logical/check-all-of';
 import type { ValidationChecker, ValidationCheckerArgs } from '../validator/types/validation-checker';
 import type { ValidationResult } from '../validator/types/validation-result';
 import type { Validator } from '../validator/types/validator';
-import { checkValidity } from '../validators/generic/logical/check-all-of';
 import { areAnyBindingsFalsey } from './internal/are-any-bindings-falsey';
 import { areAnyBindingsTruthy } from './internal/are-any-bindings-truthy';
 import type { UseValidatorArgs } from './types/use-validator-args';

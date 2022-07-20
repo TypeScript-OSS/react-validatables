@@ -1,5 +1,5 @@
 import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
-import { checkValidity } from '../../validators/generic/logical/check-all-of';
+import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of';
 
 /** Selects a different value to continue validation with */
 export const selectValue =

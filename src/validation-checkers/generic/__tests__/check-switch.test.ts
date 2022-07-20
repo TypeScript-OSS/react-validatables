@@ -3,19 +3,24 @@ import { useBinding } from 'react-bindings';
 
 import { runInDom } from '../../../__test_dependency__';
 import { defaultValidationError } from '../../../consts/default-validation-error';
+import { selectValue } from '../../../transformers/generic/select-value';
 import { useValidator } from '../../../use-validator/use-validator';
-import { checkStringNotEmpty } from '../../../validation-checkers/string/string-length';
-import { change } from '../change';
-import { preventNull } from '../nullish';
+import { checkIf } from '../check-if';
+import { checkSwitch } from '../check-switch';
 
-describe('change', () => {
+describe('checkSwitch', () => {
   it('should work', () =>
     runInDom(({ onMount }) => {
-      const myBinding = useBinding<string | null>(() => null, { id: 'myBinding' });
-      const isBindingValid = useValidator(
-        myBinding,
-        () => preventNull(change((value) => value.replace(/[a-f]/gi, ''), checkStringNotEmpty())),
-        { id: 'myBindingValidator' }
+      const mode = useBinding((): 'uppercase' | 'lowercase' => 'uppercase', { id: 'mode', detectChanges: true });
+      const myBinding = useBinding(() => 'MiXed', { id: 'myBinding' });
+      const isBindingValid = useValidator({ mode, myBinding }, ({ mode, myBinding }) =>
+        selectValue(
+          myBinding,
+          checkSwitch(mode, {
+            lowercase: checkIf((value) => value === value.toLocaleLowerCase()),
+            uppercase: checkIf((value) => value === value.toLocaleUpperCase())
+          })
+        )
       );
 
       expect(isBindingValid.value.get()?.isValid).toBeUndefined();
@@ -26,17 +31,23 @@ describe('change', () => {
 
         expect(isBindingValid.value.get()?.validationError).toBe(defaultValidationError);
 
-        myBinding.set('hello world');
+        myBinding.set('HELLO');
 
         await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(true));
 
         expect(isBindingValid.value.get()?.validationError).toBeUndefined();
 
-        myBinding.set('FedBeef');
+        mode.set('lowercase');
 
         await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(false));
 
         expect(isBindingValid.value.get()?.validationError).toBe(defaultValidationError);
+
+        myBinding.set('hello');
+
+        await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(true));
+
+        expect(isBindingValid.value.get()?.validationError).toBeUndefined();
       });
     }));
 });

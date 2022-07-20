@@ -4,7 +4,7 @@ import { useBinding } from 'react-bindings';
 import { runInDom } from '../../__test_dependency__';
 import { defaultValidationError } from '../../consts/default-validation-error';
 import { changeStringTrim } from '../../transformers/string/change-string-trim';
-import { checkStringNotEmpty } from '../../validators/string/string-length';
+import { checkStringNotEmpty } from '../../validation-checkers/string/string-length';
 import { useValidator } from '../use-validator';
 
 describe('useValidator', () => {

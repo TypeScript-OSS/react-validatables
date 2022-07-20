@@ -12,7 +12,7 @@ import {
 } from '../types/mutable-binding-dependencies';
 import type { ValidationError } from '../validator/types/validation-error';
 import type { ValidationResult } from '../validator/types/validation-result';
-import { Validator } from '../validator/types/validator';
+import type { Validator } from '../validator/types/validator';
 
 const emptyDependencies = Object.freeze({} as EmptyObject);
 
