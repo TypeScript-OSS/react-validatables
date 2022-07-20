@@ -1,5 +1,5 @@
 import { ReadonlyBinding, useDerivedBinding } from 'react-bindings';
-import { InferOptionalWaitableAndBindingValueTypes, TypeOrPromisedType, useDerivedWaitable, WaitableDependencies } from 'react-waitables';
+import { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, useDerivedWaitable, WaitableDependencies } from 'react-waitables';
 
 import { disabledState, validState } from '../consts/basic-validation-results';
 import { useCallbackRef } from '../internal-hooks/use-callback-ref';
@@ -28,10 +28,10 @@ const emptyBindingsArray = Object.freeze([]) as unknown as Array<ReadonlyBinding
 export const useValidator = <DependenciesT extends WaitableDependencies>(
   dependencies: DependenciesT | undefined,
   validators: (
-    dependencyValues: InferOptionalWaitableAndBindingValueTypes<DependenciesT>,
+    dependencyValues: InferRequiredWaitableAndBindingValueTypes<DependenciesT>,
     dependencies: DependenciesT,
     args: ValidationCheckerArgs
-  ) => TypeOrPromisedType<ValidationChecker<InferOptionalWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
+  ) => TypeOrPromisedType<ValidationChecker<InferRequiredWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
   {
     id = 'validator',
     disabledUntil: disabledUntilBindings,
