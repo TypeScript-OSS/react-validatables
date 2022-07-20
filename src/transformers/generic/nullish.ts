@@ -1,9 +1,9 @@
 import { validState } from '../../consts/basic-validation-results';
 import { defaultValidationError } from '../../consts/default-validation-error';
-import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
-import type { ValidationError } from '../../validator/types/validation-error';
 import { alwaysValid } from '../../validation-checkers/always';
 import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of';
+import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
+import type { ValidationError } from '../../validator/types/validation-error';
 
 /** Results in "validity" for `null` or any value that satisfies the specified checker */
 export const allowNull =

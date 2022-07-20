@@ -34,6 +34,7 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
   ) => TypeOrPromisedType<ValidationChecker<InferRequiredWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
   {
     id = 'validator',
+    deps,
     disabledUntil: disabledUntilBindings,
     disabledWhile: disabledWhileBindings,
     disabledWhileUnmodified: disabledWhileUnmodifiedBindings,
@@ -101,6 +102,7 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     },
     {
       id,
+      deps,
       addFields: () => ({ isDisabled }),
       hardResetBindings: isDisabledBinding,
       defaultValue: () => (isDisabled() ? disabledState : undefined),

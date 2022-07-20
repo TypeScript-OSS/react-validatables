@@ -1,8 +1,11 @@
+import type { DependencyList } from 'react';
 import type { BindingArrayDependencies, LimiterOptions, ReadonlyBinding } from 'react-bindings';
 
 export interface UseValidatorArgs extends LimiterOptions {
   /** A technical, but human-readable ID, which isn't guaranteed to be unique */
   id?: string;
+  /** On a rerender, deps changes are treated like hard reset bindings changes. */
+  deps?: DependencyList;
 
   /**
    * If specified and the values of any of the specified bindings are not truthy, the validator is disabled and so it will always result in
