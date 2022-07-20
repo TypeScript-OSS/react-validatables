@@ -28,11 +28,11 @@ export interface FinalizeValidationOptions<
 
   /** Called if the validator results in "invalidity" */
   onInvalid?: (
+    validationError: ValidationError,
     fieldBindingValues: InferBindingValueTypes<FieldBindingsT>,
     additionalDependencyValues: InferOptionalWaitableAndBindingValueTypes<AdditionalDependenciesT>,
     fieldBindings: FieldBindingsT,
-    additionalDependencies: AdditionalDependenciesT,
-    validationError: ValidationError
+    additionalDependencies: AdditionalDependenciesT
   ) => void;
 
   /** Called if the validator results in "validity" */
@@ -118,11 +118,11 @@ export const finalizeValidation = <
         );
       } else {
         onInvalid?.(
+          validationResult.validationError,
           fieldBindingValues,
           additionalDependencyValues,
           fieldBindings ?? (emptyDependencies as FieldBindingsT),
-          additionalDependencies ?? (emptyDependencies as AdditionalDependenciesT),
-          validationResult.validationError
+          additionalDependencies ?? (emptyDependencies as AdditionalDependenciesT)
         );
       }
     }, 0);

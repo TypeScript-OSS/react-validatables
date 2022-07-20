@@ -41,7 +41,7 @@ describe('finalizeValidation', () => {
             onValid: ({ a, b }, { c }) => {
               resolve(`valid:${a}:${b}:${c}`);
             },
-            onInvalid: ({ a, b }, { c }) => {
+            onInvalid: (_validationError, { a, b }, { c }) => {
               resolve(`invalid:${a}:${b}:${c}`);
             }
           });
@@ -65,7 +65,7 @@ describe('finalizeValidation', () => {
             onValid: ({ a, b }, { c }) => {
               resolve(`valid:${a}:${b}:${c}`);
             },
-            onInvalid: ({ a, b }, { c }) => {
+            onInvalid: (_validationError, { a, b }, { c }) => {
               resolve(`invalid:${a}:${b}:${c}`);
             }
           });
