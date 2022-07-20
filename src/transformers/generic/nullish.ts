@@ -1,25 +1,25 @@
 import { validState } from '../../consts/basic-validation-results';
 import { defaultValidationError } from '../../consts/default-validation-error';
-import type { ValidationChecker, ValidationCheckerArgs, ValidatorCheckerFunction } from '../../validator/types/validation-checker';
+import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import type { ValidationError } from '../../validator/types/validation-error';
 import { alwaysValid } from '../../validators/always';
 import { checkValidity } from '../../validators/generic/logical/check-all-of';
 
 /** Results in "validity" for `null` or any value that satisfies the specified checker */
 export const allowNull =
-  <T>(checker: ValidationChecker<T> = alwaysValid): ValidatorCheckerFunction<T | null> =>
+  <T>(checker: ValidationChecker<T> = alwaysValid): ValidationCheckerFunction<T | null> =>
   (value: T | null, args: ValidationCheckerArgs) =>
     value === null ? validState : checkValidity(checker, value, args);
 
 /** Results in "validity" for `null` and `undefined` or any value that satisfies the specified checker */
 export const allowNullish =
-  <T>(checker: ValidationChecker<T> = alwaysValid): ValidatorCheckerFunction<T | null | undefined> =>
+  <T>(checker: ValidationChecker<T> = alwaysValid): ValidationCheckerFunction<T | null | undefined> =>
   (value: T | null | undefined, args: ValidationCheckerArgs) =>
     value === null || value === undefined ? validState : checkValidity(checker, value, args);
 
 /** Results in "validity" for `undefined` or any value that satisfies the specified checker */
 export const allowUndefined =
-  <T>(checker: ValidationChecker<T> = alwaysValid): ValidatorCheckerFunction<T | undefined> =>
+  <T>(checker: ValidationChecker<T> = alwaysValid): ValidationCheckerFunction<T | undefined> =>
   (value: T | undefined, args: ValidationCheckerArgs) =>
     value === undefined ? validState : checkValidity(checker, value, args);
 
@@ -28,7 +28,7 @@ export const preventNull =
   <T>(
     checker: ValidationChecker<T> = alwaysValid,
     validationError: ValidationError = defaultValidationError
-  ): ValidatorCheckerFunction<T | null> =>
+  ): ValidationCheckerFunction<T | null> =>
   (value: T | null, args: ValidationCheckerArgs) =>
     value === null ? { isValid: false, validationError } : checkValidity(checker, value, args);
 
@@ -38,7 +38,7 @@ export const preventNullish =
   <T>(
     checker: ValidationChecker<T> = alwaysValid,
     validationError: ValidationError = defaultValidationError
-  ): ValidatorCheckerFunction<T | null | undefined> =>
+  ): ValidationCheckerFunction<T | null | undefined> =>
   (value: T | null | undefined, args: ValidationCheckerArgs) =>
     value === null || value === undefined ? { isValid: false, validationError } : checkValidity(checker, value, args);
 
@@ -47,6 +47,6 @@ export const preventUndefined =
   <T>(
     checker: ValidationChecker<T> = alwaysValid,
     validationError: ValidationError = defaultValidationError
-  ): ValidatorCheckerFunction<T | undefined> =>
+  ): ValidationCheckerFunction<T | undefined> =>
   (value: T | undefined, args: ValidationCheckerArgs) =>
     value === undefined ? { isValid: false, validationError } : checkValidity(checker, value, args);

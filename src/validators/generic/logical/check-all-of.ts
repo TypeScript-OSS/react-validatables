@@ -2,7 +2,7 @@ import type { TypeOrPromisedType } from 'react-waitables';
 
 import { validState } from '../../../consts/basic-validation-results';
 import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
-import type { ValidationChecker, ValidationCheckerArgs, ValidatorCheckerFunction } from '../../../validator/types/validation-checker';
+import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
 
@@ -13,7 +13,7 @@ import type { ValidationResult } from '../../../validator/types/validation-resul
  * validator's error.
  */
 export const checkAllOf =
-  <T>(validators: Array<ValidationChecker<T> | undefined>, validationError?: ValidationError): ValidatorCheckerFunction<T> =>
+  <T>(validators: Array<ValidationChecker<T> | undefined>, validationError?: ValidationError): ValidationCheckerFunction<T> =>
   async (value, args) => {
     const { wasReset } = args;
 

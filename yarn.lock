@@ -1744,9 +1744,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.188:
-  version "1.4.193"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.193.tgz#8e760b9d9a7b92fe472664fd61811b307f3de39b"
-  integrity sha512-tBqbgRv0yFIYBLBQKW6kHzI81rjvO1CRy+K8+XHTZtkVPkAZayI/CxTqBiy6Q1+tYAxby8bq/6yOiuNkTvfxmw==
+  version "1.4.195"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.195.tgz#139b2d95a42a3f17df217589723a1deac71d1473"
+  integrity sha512-vefjEh0sk871xNmR5whJf9TEngX+KTKS3hOHpjoMpauKkwlGwtMz1H8IaIjAT/GNnX0TbGwAdmVoXCAzXf+PPg==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -1875,10 +1875,10 @@ eslint-import-resolver-node@^0.3.6:
     debug "^3.2.7"
     resolve "^1.20.0"
 
-eslint-import-resolver-typescript@^3.2.7:
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.2.7.tgz#b873d549d9b00a880c54f9b352f7336c303794b0"
-  integrity sha512-WvcsRy3aPmwVsuS/XVliAJWpIdTlaFXXZPZk3TCbvvF8RtaAkjAhcLL5bl5VEoTmE+XnTHjIbWMzNZcOQpK/DA==
+eslint-import-resolver-typescript@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.3.0.tgz#c2b9f420563bdcb4b84d550d81e579f8dc867d5b"
+  integrity sha512-vlooCGKfDX59rH5TbtluOekinPlIS5Ab+dyQUoCCJoE1IV11R/kn6J+RoMBuBkJhzJEIKJ4myQJhw6lGIXfkRA==
   dependencies:
     debug "^4.3.4"
     enhanced-resolve "^5.10.0"

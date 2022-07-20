@@ -17,8 +17,8 @@ export interface ValidationCheckerArgs {
  *
  * Async functions should check `wasReset` to avoid doing unnecessary work.
  */
-export type ValidatorCheckerFunction<ValueT> = (value: ValueT, args: ValidationCheckerArgs) => TypeOrPromisedType<ValidationResult>;
+export type ValidationCheckerFunction<ValueT> = (value: ValueT, args: ValidationCheckerArgs) => TypeOrPromisedType<ValidationResult>;
 
 /** A function that produces a `ValidationResult`, a `ValidationResult` directly, or an array of validation checkers, which implies an
  * all-of check */
-export type ValidationChecker<ValueT> = ValidatorCheckerFunction<ValueT> | ValidationResult | Array<ValidationChecker<ValueT> | undefined>;
+export type ValidationChecker<ValueT> = ValidationCheckerFunction<ValueT> | ValidationResult | Array<ValidationChecker<ValueT> | undefined>;

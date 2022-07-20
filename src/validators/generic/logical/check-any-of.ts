@@ -1,7 +1,7 @@
 import { validState } from '../../../consts/basic-validation-results';
 import { defaultValidationError } from '../../../consts/default-validation-error';
 import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
-import type { ValidationChecker, ValidatorCheckerFunction } from '../../../validator/types/validation-checker';
+import type { ValidationChecker, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
 import { checkValidity } from './check-all-of';
@@ -15,7 +15,7 @@ export const checkAnyOf =
   <T>(
     validators: Array<ValidationChecker<T> | undefined>,
     validationError: ValidationError = defaultValidationError
-  ): ValidatorCheckerFunction<T> =>
+  ): ValidationCheckerFunction<T> =>
   async (value, args) => {
     const { wasReset } = args;
 
