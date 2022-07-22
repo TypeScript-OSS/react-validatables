@@ -764,12 +764,12 @@
     pretty-format "^28.0.0"
 
 "@types/jsdom@^16.2.4":
-  version "16.2.14"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.14.tgz#26fe9da6a8870715b154bb84cd3b2e53433d8720"
-  integrity sha512-6BAy1xXEmMuHeAJ4Fv4yXKwBDTGTOseExKE3OaHiNycdHdZw59KfYzrt0DkDluvwmik1HRt6QS7bImxUmpSy+w==
+  version "16.2.15"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.15.tgz#6c09990ec43b054e49636cba4d11d54367fc90d6"
+  integrity sha512-nwF87yjBKuX/roqGYerZZM0Nv1pZDMAT5YhOHYeM/72Fic+VEqJh4nyoqoapzJnW3pUlfxPY5FhgsJtM+dRnQQ==
   dependencies:
     "@types/node" "*"
-    "@types/parse5" "*"
+    "@types/parse5" "^6.0.3"
     "@types/tough-cookie" "*"
 
 "@types/json-schema@^7.0.9":
@@ -797,7 +797,7 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/parse5@*":
+"@types/parse5@^6.0.3":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@types/parse5/-/parse5-6.0.3.tgz#705bb349e789efa06f43f128cef51240753424cb"
   integrity sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==
@@ -1325,9 +1325,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001366:
-  version "1.0.30001367"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001367.tgz#2b97fe472e8fa29c78c5970615d7cd2ee414108a"
-  integrity sha512-XDgbeOHfifWV3GEES2B8rtsrADx4Jf+juKX2SICJcaUhjYBO3bR96kvEIHa15VU6ohtOhBZuPGGYGbXMRn0NCw==
+  version "1.0.30001368"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001368.tgz#c5c06381c6051cd863c45021475434e81936f713"
+  integrity sha512-wgfRYa9DenEomLG/SdWgQxpIyvdtH3NW8Vq+tB6AwR9e56iOIcu1im5F/wNdDf04XlKHXqIx4N8Jo0PemeBenQ==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1380,10 +1380,10 @@ cli-spinners@^2.5.0:
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.6.1.tgz#adc954ebe281c37a6319bfa401e6dd2488ffb70d"
   integrity sha512-x/5fWmGMnbKQAaNwN+UZlV79qBLM9JFnJuJ03gIi5whrob0xV0ofNVHy9DhwGdsMJQc2OKv0oGmLzvaqvAVv+g==
 
-client-run-queue@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/client-run-queue/-/client-run-queue-1.1.7.tgz#da769c066a13f8ed2b7af4aaa633d5bf2cd02a23"
-  integrity sha512-46yKtAZ4xSQoSnMuDL2WcD3pJ1Inm+ZZ/sG1z4vITmaayq2nYc8fiLJpy3WXAdF0evUE9sPBYHj+PFg7dLu3KA==
+client-run-queue@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/client-run-queue/-/client-run-queue-1.1.8.tgz#a86ba4089be9236f3eaf4577d80ac82fd5b84a2b"
+  integrity sha512-6d4FzehGKqLTCdp+2n6ZdJb86qMis3XFv9UTtyHkh36I55H9/nuelMV7Z00oGm/z2JsL+iA+BeyMKCYVsHoYEg==
   dependencies:
     heap "^0.2.7"
 
@@ -1744,9 +1744,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.188:
-  version "1.4.195"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.195.tgz#139b2d95a42a3f17df217589723a1deac71d1473"
-  integrity sha512-vefjEh0sk871xNmR5whJf9TEngX+KTKS3hOHpjoMpauKkwlGwtMz1H8IaIjAT/GNnX0TbGwAdmVoXCAzXf+PPg==
+  version "1.4.196"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.196.tgz#e18cdc5c1c2c2ebf78da237d0c374cc3b244d4cb"
+  integrity sha512-uxMa/Dt7PQsLBVXwH+t6JvpHJnrsYBaxWKi/J6HE+/nBtoHENhwBoNkgkm226/Kfxeg0z1eMQLBRPPKcDH8xWA==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -4169,12 +4169,12 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-bindings@^1.3.4, react-bindings@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-bindings/-/react-bindings-1.4.1.tgz#0af64284f6fb64cb407e5cbe3a505512cc2294f8"
-  integrity sha512-cWcME/7P5uVAtS5OPjwhjhuMvPNrR5vzS6Vqji4DFxIVLms8EydoPyTpu0vR9+XrMmGazAGHu6yT9T/cC2JSVA==
+react-bindings@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/react-bindings/-/react-bindings-1.4.3.tgz#f8c753e01fdd7e41244fa93cb9c4579d5f663203"
+  integrity sha512-Bo4eGHGKYXes0+IQmVSKf1EXGFMym8Os1vcIAMmCg2JPIfW/46JWKy8T8qlH1K/GVW2Tk6kMz7CFkD/gU127Ug==
   dependencies:
-    client-run-queue "^1.1.7"
+    client-run-queue "^1.1.8"
     is-promise "^4.0.0"
     lodash "^4.17.21"
 
@@ -4201,14 +4201,14 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-waitables@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.3.0.tgz#b379478608c3d939c4982238343dbeb260059f2b"
-  integrity sha512-HKFakmLt3L/dYuulmU7Q+F1TszFv+/AMKjysgmhDrFW/XfDBfVULKm4WgDgJtrBb+x/TZZtjgcKXfZ4R8LRiGg==
+react-waitables@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.3.2.tgz#92c1f52cef9eec2f7125e94c9bdef54a27ad9e19"
+  integrity sha512-J4B+NqCMd2m07kMRhx2wR3eTqx9CylYoL2BykaGtkM1lZtIzSYyXzBF253XsVvsamEfVbxkJtlOF8IGb8gchxQ==
   dependencies:
-    client-run-queue "^1.1.7"
+    client-run-queue "^1.1.8"
     is-promise "^4.0.0"
-    react-bindings "^1.3.4"
+    react-bindings "^1.4.3"
 
 react@18.2.0:
   version "18.2.0"
