@@ -46,7 +46,7 @@ export const App = () => {
       </div>
       <div>
         You entered:&nbsp;
-        <BindingsConsumer bindings={{ value }}>{({ value }) => value}</BindingsConsumer>
+        <BindingsConsumer bindings={value}>{(value) => value}</BindingsConsumer>
       </div>
       <WaitablesConsumer dependencies={valueValidator}>
         {(validator) => (
@@ -74,13 +74,13 @@ In the following example, we demonstrated stored values and validators (see [Cod
 [Try it Out – CodeSandbox](https://codesandbox.io/s/react-validatables-multiple-inputs-7hjgwl)
 
 ```typescript
-const makeNamePartValidator = () => changeStringTrim(checkStringNotEmpty());
+const checkNamePart = (): ValidationChecker<string> => changeStringTrim(checkStringNotEmpty());
 
 const firstName = useBinding(() => '', { id: 'firstName', detectChanges: true });
-const firstNameValidator = useValidator(firstName, makeNamePartValidator);
+const firstNameValidator = useValidator(firstName, checkNamePart);
 
 const lastName = useBinding(() => '', { id: 'lastName', detectChanges: true });
-const lastNameValidator = useValidator(lastName, makeNamePartValidator);
+const lastNameValidator = useValidator(lastName, checkNamePart);
 
 const nameValidator = useValidator([firstNameValidator, lastNameValidator], (validators) =>
   checkAnyOf(validators, 'First name, last name, or both must be specified')
@@ -98,7 +98,7 @@ const ageValidator = useValidator(age, () =>
   )
 );
 
-const formValidator = useValidator([nameValidator, ageValidator], (validators) => validators);
+const formValidator = useValidators([nameValidator, ageValidator]);
 ```
 
 As your use cases become more complex, you'll start to build reusable, composable validators.
@@ -107,14 +107,16 @@ As your use cases become more complex, you'll start to build reusable, composabl
 
 There are many cases where validation logic needs to be dynamic.  With `react-validatables`, there are two main ways to introduce dynamism:
 
-- validator creation
-- validator disabling bindings
+- dynamic validation checkers
+- validator disabling bindings / `setDisabledOverride`
 
-The validator creation function is called every time validation is performed, so the rules you setup can be changed anytime.
+The validator checker creation function is called every time validation is performed, so the rules you setup can be changed anytime.
 
 Validators can be disabled using one or more of `disabledUntil`, `disabledWhile`, and/or `disabledWhileUnmodifiedBindings`.  When a validator is disabled, it it always considered to be valid.  All of these options takes one or more bindings, so validators can be disabled/enabled very dynamically.
 
 `disabledWhileUnmodifiedBindings` helps create more friendly forms by, for example, not providing feedback on inputs that the user hasn't modified yet.  Otherwise, in the common case, all fields would initially be in an error state, which isn't necessarily useful.  Consider using `disabledWhileUnmodifiedBindings` on all or most validators directly associated with inputs (see Final Validation section below as well).
+
+If you need to override the automatically-calculated behavior, validators expose `setDisabledOverride`, which can be used to forcibly enable or disable a validator or to clear the override.
 
 ### Example
 
@@ -131,10 +133,14 @@ In addition to interactive validation, we often need "final" validation before, 
 
 During interactive validation, we often have `disabledWhileUnmodifiedBindings` associated with inputs.  However, if a user tries to submit a form with incomplete data, where they've accidentally skipped a field, for example, we then want to make sure we give clear feedback at that point.  The `finalizeValidation` utility is used for these cases and to generally wait for validation to finish.
 
+You may also want to use `useValidators` which is a shorthand for combining multiple validators together.
+
 ```typescript
+const formValidator = useValidators([firstNameValidator, lastNameValidator]);
+
 const onDoneClick = () =>
   finalizeValidation(formValidator, {
-    bindings: { firstName, lastName },
+    fieldBindings: { firstName, lastName },
     onValid: ({ firstName, lastName }) => { … }
   });
 ```
@@ -145,9 +151,11 @@ const onDoneClick = () =>
 - for bindings newly marked as modified, calls `triggerChangeListeners`, which in turn resets the associated validators
 - locks the specified bindings
 - waits for the validator to finish
-- extracts the specified binding's values
+- extracts the specified bindings' values
 - unlocks the specified bindings
 - calls either `onValid` or `onInvalid`
+
+It returns a function that can be used to cancel validation, if desired, and also a promise for the result.
 
 ## Extension
 
@@ -155,10 +163,10 @@ This package provides basic functionality for string and number validation and, 
 
 For extending these capabilities, be sure to checkout our [API Docs](https://passfolio.github.io/react-validatables/) to get a more-complete picture of the building blocks.
 
-Examples of anticipated extensions are support for:
+Examples of extensions others might add support for are:
 
-- BigNumber
-- DateTime (Luxon)
+- `BigNumber`
+- `DateTime` (Luxon)
 - Formal schemas and/or other validation tools (ex. Yaschema, Joi)
 
 ## Naming
@@ -200,6 +208,8 @@ selectValue(Math.random(), checkNumberGT(0.5))
 Thanks for checking it out.  Feel free to create issues or otherwise provide feedback.
 
 react-validatables is maintained by the team at [Passfolio](https://www.passfolio.com).
+
+Be sure to check out our other [Open Source @ Passfolio](https://github.com/Passfolio) projects as well.
 
 <!-- Definitions -->
 

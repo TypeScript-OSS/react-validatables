@@ -93,4 +93,28 @@ describe('useValidator', () => {
         await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(true));
       });
     }));
+
+  it('should be enabled if setDisabledOverride(false) is used, even if it would be disabled otherwise', () =>
+    runInDom(({ onMount }) => {
+      const myBinding = useBinding(() => '', { id: 'myBinding' });
+      const isBindingValid = useValidator(myBinding, () => checkStringNotEmpty(), {
+        id: 'myBindingValidator',
+        disabledWhileUnmodified: myBinding
+      });
+
+      expect(isBindingValid.value.get()?.isValid).toBe(true);
+      expect(isBindingValid.isDisabled()).toBeTruthy();
+
+      onMount(async () => {
+        isBindingValid.setDisabledOverride(false);
+
+        expect(isBindingValid.isDisabled()).toBeFalsy();
+
+        await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(false));
+
+        myBinding.set('hello');
+
+        await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(true));
+      });
+    }));
 });

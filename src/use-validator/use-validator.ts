@@ -1,4 +1,4 @@
-import { ReadonlyBinding, useDerivedBinding } from 'react-bindings';
+import { ReadonlyBinding, useBinding, useDerivedBinding } from 'react-bindings';
 import { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, useDerivedWaitable, WaitableDependencies } from 'react-waitables';
 
 import { disabledState, validState } from '../consts/basic-validation-results';
@@ -56,13 +56,21 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
   const disabledWhileUnmodified =
     disabledWhileUnmodifiedBindings !== undefined ? normalizeAsArray(disabledWhileUnmodifiedBindings) : emptyBindingsArray;
 
+  /** If defined, overrides all other disabling factors (i.e. disabledUntil, disabledWhile, and disabledWhileUnmodified) */
+  const disabledOverride = useBinding<boolean | undefined>(() => undefined, { id: 'disabledOverrides', detectChanges: true });
+
   /** If true, this validator is disabled */
   const isDisabledBinding = useDerivedBinding(
-    [...disabledUntil, ...disabledWhile, ...disabledWhileUnmodified],
-    (): boolean => areAnyBindingsFalsey(disabledUntil) || areAnyBindingsTruthy(disabledWhile),
+    [disabledOverride, ...disabledUntil, ...disabledWhile, ...disabledWhileUnmodified],
+    (): boolean => disabledOverride.get() ?? (areAnyBindingsFalsey(disabledUntil) || areAnyBindingsTruthy(disabledWhile)),
     { id: `${id}_disabled`, limitType: 'none' }
   );
   const isDisabled = useCallbackRef(() => {
+    const override = disabledOverride.get();
+    if (override !== undefined) {
+      return override;
+    }
+
     if (isDisabledBinding.get()) {
       return true;
     }
@@ -103,7 +111,10 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     {
       id,
       deps,
-      addFields: () => ({ isDisabled }),
+      addFields: () => ({
+        isDisabled,
+        setDisabledOverride: (disabled: boolean | undefined) => disabledOverride.set(disabled)
+      }),
       hardResetBindings: isDisabledBinding,
       defaultValue: () => (isDisabled() ? disabledState : undefined),
       ...limiterOptions
