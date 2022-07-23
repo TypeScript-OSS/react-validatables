@@ -27,7 +27,7 @@ const emptyBindingsArray = Object.freeze([]) as unknown as Array<ReadonlyBinding
  */
 export const useValidator = <DependenciesT extends WaitableDependencies>(
   dependencies: DependenciesT | undefined,
-  validators: (
+  makeChecker: (
     dependencyValues: InferRequiredWaitableAndBindingValueTypes<DependenciesT>,
     dependencies: DependenciesT,
     args: ValidationCheckerArgs
@@ -97,13 +97,13 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
 
       const args: ValidationCheckerArgs = { wasReset };
 
-      const resolvedValidators = await validators(values, dependencies, args);
+      const checkers = await makeChecker(values, dependencies, args);
       if (wasReset()) {
         return undefined;
       }
 
-      if (resolvedValidators !== undefined) {
-        return checkValidity(resolvedValidators, values, args);
+      if (checkers !== undefined) {
+        return checkValidity(checkers, values, args);
       } else {
         return validState;
       }

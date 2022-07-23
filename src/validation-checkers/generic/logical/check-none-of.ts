@@ -13,7 +13,7 @@ import { checkValidity } from './check-all-of';
  */
 export const checkNoneOf =
   <T>(
-    validators: Array<ValidationChecker<T> | undefined>,
+    checkers: Array<ValidationChecker<T> | undefined>,
     validationError: ValidationError = defaultValidationError
   ): ValidationCheckerFunction<T> =>
   async (value, args) => {
@@ -25,7 +25,7 @@ export const checkNoneOf =
 
     const results = await runAllAfterInteractions<ValidationResult>(
       'validator.checkNoneOf',
-      validators.map((validator) => async ({ stop, wasStopped }) => {
+      checkers.map((validator) => async ({ stop, wasStopped }) => {
         if (validator === undefined) {
           return undefined;
         }

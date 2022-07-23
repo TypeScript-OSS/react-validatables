@@ -13,7 +13,7 @@ import type { ValidationResult } from '../../../validator/types/validation-resul
  * validator's error.
  */
 export const checkAllOf =
-  <T>(validators: Array<ValidationChecker<T> | undefined>, validationError?: ValidationError): ValidationCheckerFunction<T> =>
+  <T>(checkers: Array<ValidationChecker<T> | undefined>, validationError?: ValidationError): ValidationCheckerFunction<T> =>
   async (value, args) => {
     const { wasReset } = args;
 
@@ -23,7 +23,7 @@ export const checkAllOf =
 
     const results = await runAllAfterInteractions<ValidationResult>(
       'validator.checkAllOf',
-      validators.map((validator) => async ({ stop, wasStopped }) => {
+      checkers.map((validator) => async ({ stop, wasStopped }) => {
         if (validator === undefined) {
           return undefined;
         }
