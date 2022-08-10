@@ -143,10 +143,7 @@ export const finalizeValidation = <
 
     // Otherwise wait for the result.  Because we call triggerChangeListeners on the unmodified bindings above, one or more resets may occur
     // on the validator, which we want to ignore
-    let waitResult = await formValidator.wait();
-    while (!wasCanceled && waitResult === 'reset') {
-      waitResult = await formValidator.wait();
-    }
+    const waitResult = await formValidator.wait({ continueWaitingOnReset: () => !wasCanceled });
 
     if (waitResult === 'failure') {
       return undefined;
