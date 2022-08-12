@@ -132,7 +132,7 @@ export const finalizeValidation = <
 
   const validationResult = lockBindingsAndDo(allFieldBindings, async () => {
     if (wasCanceled) {
-      return;
+      return undefined;
     }
 
     // If the validator is already ready, trigger the callbacks right away
