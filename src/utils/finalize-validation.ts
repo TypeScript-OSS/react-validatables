@@ -17,10 +17,10 @@ import type { Validator } from '../validator/types/validator';
 const emptyDependencies = Object.freeze({} as EmptyObject);
 
 export interface FinalizeValidationOptions<
-  FieldBindingsT extends MutableBindingDependencies = Record<string, never>,
-  AdditionalDependenciesT extends WaitableDependencies = Record<string, never>
+  FieldBindingsT extends MutableBindingDependencies,
+  AdditionalDependenciesT extends WaitableDependencies
 > {
-  /** Bindings that, when unmodfied, cause validators to be disabled.  Usually individual field bindings. */
+  /** Bindings that, when unmodified, cause validators to be disabled.  Usually individual field bindings. */
   fieldBindings?: FieldBindingsT;
 
   /** Additional dependencies, which must not overlap `markBindingsAsModified` */
@@ -62,10 +62,7 @@ export interface FinalizeValidationResult {
  *
  * @returns A function that can be used to cancel the requested validation and a promised validation result.
  */
-export const finalizeValidation = <
-  FieldBindingsT extends MutableBindingDependencies = Record<string, never>,
-  AdditionalDependenciesT extends WaitableDependencies = Record<string, never>
->(
+export const finalizeValidation = <FieldBindingsT extends MutableBindingDependencies, AdditionalDependenciesT extends WaitableDependencies>(
   formValidator: Validator,
   { fieldBindings, additionalDependencies, onInvalid, onValid }: FinalizeValidationOptions<FieldBindingsT, AdditionalDependenciesT> = {}
 ): FinalizeValidationResult => {
@@ -113,16 +110,16 @@ export const finalizeValidation = <
         onValid?.(
           fieldBindingValues,
           additionalDependencyValues,
-          fieldBindings ?? (emptyDependencies as FieldBindingsT),
-          additionalDependencies ?? (emptyDependencies as AdditionalDependenciesT)
+          fieldBindings ?? (undefined as any as FieldBindingsT),
+          additionalDependencies ?? (undefined as AdditionalDependenciesT)
         );
       } else {
         onInvalid?.(
           validationResult.validationError,
           fieldBindingValues,
           additionalDependencyValues,
-          fieldBindings ?? (emptyDependencies as FieldBindingsT),
-          additionalDependencies ?? (emptyDependencies as AdditionalDependenciesT)
+          fieldBindings ?? (undefined as any as FieldBindingsT),
+          additionalDependencies ?? (undefined as AdditionalDependenciesT)
         );
       }
     }, 0);

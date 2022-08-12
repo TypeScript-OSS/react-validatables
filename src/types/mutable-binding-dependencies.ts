@@ -4,4 +4,4 @@ export type MutableBindingArrayDependencies = Array<Binding | undefined> | [Bind
 
 export type NamedMutableBindingDependencies = Record<string, Binding | undefined>;
 
-export type MutableBindingDependencies = Binding | MutableBindingArrayDependencies | NamedMutableBindingDependencies;
+export type MutableBindingDependencies = Binding | MutableBindingArrayDependencies | NamedMutableBindingDependencies | undefined;

@@ -1,6 +1,6 @@
 {
   "name": "react-validatables",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Validation tools for React built on react-waitables",
   "keywords": [
     "bindings",
@@ -39,8 +39,8 @@
   "dependencies": {
     "client-run-queue": "^1.1.9",
     "heap": "^0.2.7",
-    "react-bindings": "^1.6.0",
-    "react-waitables": "^1.5.2"
+    "react-bindings": "^1.6.2",
+    "react-waitables": "^1.5.4"
   },
   "devDependencies": {
     "@jest/types": "^28.1.3",
