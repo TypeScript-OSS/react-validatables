@@ -22,3 +22,9 @@ export const checkStringAtMostChars = (
   inclusiveMaxLength: number,
   validationError: ValidationError = defaultValidationError
 ): ValidationCheckerFunction<string> => checkIf((value) => value.length <= inclusiveMaxLength, validationError);
+
+/** Results in "validity" for strings that are exactly the specified number of characters long, using `.length` */
+export const checkStringLength = (
+  expectedLength: number,
+  validationError: ValidationError = defaultValidationError
+): ValidationCheckerFunction<string> => checkIf((value) => value.length === expectedLength, validationError);
