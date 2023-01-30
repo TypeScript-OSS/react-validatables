@@ -1,3 +1,5 @@
+import { resolveTypeOrDeferredTypeWithArgs, TypeOrDeferredTypeWithArgs } from 'react-bindings';
+
 import type { ValidationChecker, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import { alwaysValid } from '../always';
 import { checkValidity } from './logical/check-all-of';
@@ -9,9 +11,11 @@ import { checkValidity } from './logical/check-all-of';
  */
 export const checkSwitch =
   <S extends string | number | symbol, T>(
-    switchingValue: S,
+    switchingValue: TypeOrDeferredTypeWithArgs<S, [T]>,
     checkersByCase: Partial<Record<S, ValidationChecker<T> | undefined>>,
     defaultChecker: ValidationChecker<T> = alwaysValid
   ): ValidationCheckerFunction<T> =>
-  (value, args) =>
-    checkValidity(checkersByCase[switchingValue] ?? defaultChecker, value, args);
+  (value, args) => {
+    const resolvedSwitchingValue = resolveTypeOrDeferredTypeWithArgs(switchingValue, [value]);
+    return checkValidity(checkersByCase[resolvedSwitchingValue] ?? defaultChecker, value, args);
+  };

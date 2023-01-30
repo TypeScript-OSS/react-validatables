@@ -1,4 +1,4 @@
-import { resolveTypeOrDeferredType, TypeOrDeferredType } from 'react-bindings';
+import { resolveTypeOrDeferredTypeWithArgs, TypeOrDeferredTypeWithArgs } from 'react-bindings';
 
 import { ValidationChecker, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import { alwaysValid } from '../always';
@@ -12,8 +12,10 @@ import { checkValidity } from './logical/check-all-of';
  */
 export const checkConditionally =
   <T>(
-    conditional: TypeOrDeferredType<boolean>,
+    conditional: TypeOrDeferredTypeWithArgs<boolean, [T]>,
     { if: ifChecker = alwaysValid, else: elseChecker = alwaysValid }: { if?: ValidationChecker<T>; else?: ValidationChecker<T> }
   ): ValidationCheckerFunction<T> =>
-  (value, args) =>
-    checkValidity(resolveTypeOrDeferredType(conditional) ? ifChecker : elseChecker, value, args);
+  (value, args) => {
+    const resolvedConditional = resolveTypeOrDeferredTypeWithArgs(conditional, [value]);
+    return checkValidity(resolvedConditional ? ifChecker : elseChecker, value, args);
+  };
