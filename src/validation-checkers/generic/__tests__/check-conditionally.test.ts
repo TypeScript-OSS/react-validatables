@@ -16,8 +16,9 @@ describe('checkConditionally', () => {
       const isBindingValid = useValidator({ mode, myBinding }, ({ mode, myBinding }) =>
         selectValue(
           myBinding,
-          checkConditionally(mode === 'lowercase', {
-            if: checkIf((value) => value === value.toLocaleLowerCase()),
+          checkConditionally({
+            if: mode === 'lowercase',
+            then: checkIf((value) => value === value.toLocaleLowerCase()),
             else: checkIf((value) => value === value.toLocaleUpperCase())
           })
         )
