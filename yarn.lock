@@ -157,9 +157,9 @@
     js-tokens "^4.0.0"
 
 "@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.13", "@babel/parser@^7.20.7":
-  version "7.20.13"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.13.tgz#ddf1eb5a813588d2fb1692b70c6fce75b945c088"
-  integrity sha512-gFDLKMfpiXCsjt4za2JA9oTMn70CeseCehb11kRZgvd7+F67Hih3OHOK24cRrWECJ/ljfPGac6ygXAs/C8kIvw==
+  version "7.20.15"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.20.15.tgz#eec9f36d8eaf0948bb88c87a46784b5ee9fd0c89"
+  integrity sha512-DI4a1oZuf8wC+oAJA9RW6ga3Zbe8RZFt7kD9i4qAspz3I/yHet1VvC3DiSy/fsUvv5pvJuNPh0LPOdCcqinDPg==
 
 "@babel/plugin-syntax-async-generators@^7.8.4":
   version "7.8.4"
@@ -1415,10 +1415,10 @@ cli-spinners@^2.5.0:
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.7.0.tgz#f815fd30b5f9eaac02db604c7a231ed7cb2f797a"
   integrity sha512-qu3pN8Y3qHNgE2AFweciB1IfMnmZ/fsNTEE+NOFjmGB2F/7rLhnhzppvpCnN4FovtP26k8lHyy9ptEbNwWFLzw==
 
-client-run-queue@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/client-run-queue/-/client-run-queue-2.0.0.tgz#5b37cde4d872e7c426b5e7e6368550b9c203de6f"
-  integrity sha512-JBuyzSwCAvwH3z53+FrmUtlMa0g1QjEzewLr/lvj8eyjuN9Hr6wxuL5/1u/bLgqXu1TKl1M5bOJxHLB1qesTsw==
+client-run-queue@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/client-run-queue/-/client-run-queue-2.0.1.tgz#358ef90e8d1ad040fb383926494b8f715d180672"
+  integrity sha512-8ZM2Z3T2PDSF8CgAtjmAQpyk9Jddw/OEGN/Qw4ip0ynTgww+GCwcBPbUi88+Z7wap0Dmb8+UzYDknZhvuMOfag==
   dependencies:
     heap "^0.2.7"
     queue-microtask "^1.2.3"
@@ -4443,12 +4443,12 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-bindings@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/react-bindings/-/react-bindings-1.7.0.tgz#eb10d28f9b6125dff3737723cf2ad583dd40799c"
-  integrity sha512-DS95+caoyVzFMMkrpDsNqx9TWi30GDJWPsMBtTNbrOJvQ5D3Ove6N2ngZzLN6DOugzGOA+4rKrG8CzisfNs8Jg==
+react-bindings@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-bindings/-/react-bindings-1.7.1.tgz#80de1177e2e531dc03d417898aa1ca1d03eb2fe5"
+  integrity sha512-AlFYLr5blsIqV4W/VVjbaOhGNYKqHhos5dryGksdE1+6MGTU1ceAGFAJeHsyHVUy4+OEtdvsblHJMJCqU6E+RQ==
   dependencies:
-    client-run-queue "^2.0.0"
+    client-run-queue "^2.0.1"
     is-promise "^4.0.0"
     lodash "^4.17.21"
 
@@ -4475,14 +4475,14 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-waitables@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.6.0.tgz#cdf26fdae3a6031d7a883044fe9f5de43c488ea1"
-  integrity sha512-w19UvZNCaGxhcD21MPHVmcYEvhW3Ovnc1TjHGufnHhS2x11O6MGVZbwwqk6voJJegMhOySSNLB98RXJdP7+MaA==
+react-waitables@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.6.1.tgz#bab11ba5f8783cda3a13d1ce416ecf8fda6dc5c0"
+  integrity sha512-mli0R9RsdRuHcyrJkLRlHG1ijBRSXtT0Nv2MnJLoAJJquAqiNQWtzDW1xHx1PhdlQJp4KRHJRqz3BhelB8xQww==
   dependencies:
-    client-run-queue "^2.0.0"
+    client-run-queue "^2.0.1"
     is-promise "^4.0.0"
-    react-bindings "^1.7.0"
+    react-bindings "^1.7.1"
 
 react@18.2.0:
   version "18.2.0"
