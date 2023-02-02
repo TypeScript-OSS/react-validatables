@@ -113,8 +113,8 @@ describe('checkAllOf', () => {
 
         await waitFor(() => expect(isBindingValid.value.get()?.isValid).toBe(true));
 
-        expect(numResets).toBe(9);
-        expect(wrappedValidator).toHaveBeenCalledTimes(11);
+        expect(numResets).toBe(10);
+        expect(wrappedValidator).toHaveBeenCalledTimes(12);
 
         expect(isBindingValid.value.get()?.validationError).toBeUndefined();
 
