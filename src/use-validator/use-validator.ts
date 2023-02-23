@@ -1,8 +1,7 @@
-import { ReadonlyBinding, useBinding, useDerivedBinding } from 'react-bindings';
+import { ReadonlyBinding, useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
 import { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, useDerivedWaitable, WaitableDependencies } from 'react-waitables';
 
 import { disabledState, validState } from '../consts/basic-validation-results';
-import { useCallbackRef } from '../internal-hooks/use-callback-ref';
 import { normalizeAsArray } from '../internal-utils/array-like';
 import { checkValidity } from '../validation-checkers/generic/logical/check-all-of';
 import type { ValidationChecker, ValidationCheckerArgs } from '../validator/types/validation-checker';
