@@ -1,4 +1,4 @@
-import { TFunction } from 'i18next';
+import type { TFunction } from 'i18next';
 import type { TypeOrPromisedType } from 'react-waitables';
 
 import { validState } from '../../../consts/basic-validation-results';

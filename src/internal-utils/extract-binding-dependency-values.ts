@@ -1,4 +1,5 @@
-import { BindingDependencies, InferBindingValueTypes, isBinding, NamedBindingDependencies } from 'react-bindings';
+import type { BindingDependencies, InferBindingValueTypes, NamedBindingDependencies } from 'react-bindings';
+import { isBinding } from 'react-bindings';
 
 export const extractBindingDependencyValues = <DependenciesT extends BindingDependencies>({
   bindings,

@@ -1,11 +1,7 @@
-import { isBinding, ReadonlyBinding } from 'react-bindings';
-import {
-  InferOptionalWaitableAndBindingValueTypes,
-  isWaitable,
-  NamedWaitableDependencies,
-  Waitable,
-  WaitableDependencies
-} from 'react-waitables';
+import type { ReadonlyBinding } from 'react-bindings';
+import { isBinding } from 'react-bindings';
+import type { InferOptionalWaitableAndBindingValueTypes, NamedWaitableDependencies, Waitable, WaitableDependencies } from 'react-waitables';
+import { isWaitable } from 'react-waitables';
 
 const emptyValues = Object.freeze({});
 

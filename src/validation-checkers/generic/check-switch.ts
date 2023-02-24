@@ -1,4 +1,5 @@
-import { resolveTypeOrDeferredTypeWithArgs, TypeOrDeferredTypeWithArgs } from 'react-bindings';
+import type { TypeOrDeferredTypeWithArgs } from 'react-bindings';
+import { resolveTypeOrDeferredTypeWithArgs } from 'react-bindings';
 
 import type { ValidationChecker, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import { alwaysValid } from '../always';

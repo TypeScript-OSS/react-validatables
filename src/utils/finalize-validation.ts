@@ -1,11 +1,13 @@
-import { Binding, EmptyObject, InferBindingValueTypes, isBinding, lockBindingsAndDo } from 'react-bindings';
-import { InferOptionalWaitableAndBindingValueTypes, isWaitable, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
+import type { Binding, EmptyObject, InferBindingValueTypes } from 'react-bindings';
+import { isBinding, lockBindingsAndDo } from 'react-bindings';
+import type { InferOptionalWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
+import { isWaitable } from 'react-waitables';
 
 import { normalizeAsArray } from '../internal-utils/array-like';
 import { extractBindingDependencyValues } from '../internal-utils/extract-binding-dependency-values';
 import { extractOptionalWaitableDependencyValues } from '../internal-utils/extract-waitable-dependency-values';
 import { getTypedKeys } from '../internal-utils/get-typed-keys';
-import {
+import type {
   MutableBindingArrayDependencies,
   MutableBindingDependencies,
   NamedMutableBindingDependencies

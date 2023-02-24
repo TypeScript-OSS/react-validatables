@@ -7,7 +7,7 @@ import { defaultValidationError } from '../../../../consts/default-validation-er
 import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../../consts/logical-validation-checkers';
 import { useValidator } from '../../../../use-validator/use-validator';
 import type { ValidationChecker, ValidationCheckerFunction } from '../../../../validator/types/validation-checker';
-import { ValidationResult } from '../../../../validator/types/validation-result';
+import type { ValidationResult } from '../../../../validator/types/validation-result';
 import { resolveValidationError } from '../../../../validator/utils/resolve-validation-error';
 import { checkStringNotEmpty } from '../../../string/string-length';
 import { checkEquals, checkNotEquals } from '../../equals';

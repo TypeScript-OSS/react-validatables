@@ -1,5 +1,7 @@
-import { ReadonlyBinding, useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
-import { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, useDerivedWaitable, WaitableDependencies } from 'react-waitables';
+import type { ReadonlyBinding } from 'react-bindings';
+import { useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
+import type { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
+import { useDerivedWaitable } from 'react-waitables';
 
 import { disabledState, validState } from '../consts/basic-validation-results';
 import { normalizeAsArray } from '../internal-utils/array-like';
