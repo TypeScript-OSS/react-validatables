@@ -5,10 +5,10 @@ import { validState } from '../../../consts/basic-validation-results';
 import { defaultValidationError } from '../../../consts/default-validation-error';
 import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../consts/logical-validation-checkers';
 import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
-import { resolveValidationError } from '../../../validator/exports';
 import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
+import { resolveValidationError } from '../../../validator/utils/resolve-validation-error';
 
 /**
  * Requires that all of the specified validators are satisfied.
