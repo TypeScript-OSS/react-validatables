@@ -161,7 +161,7 @@ It returns a function that can be used to cancel validation, if desired, and als
 
 This package provides basic functionality for string and number validation and, more importantly, provides tools for building your own performant validators.
 
-For extending these capabilities, be sure to checkout our [API Docs](https://passfolio.github.io/react-validatables/) to get a more-complete picture of the building blocks.
+For extending these capabilities, be sure to checkout our [API Docs](https://typescript-oss.github.io/react-validatables/) to get a more-complete picture of the building blocks.
 
 Examples of extensions others might add support for are:
 
@@ -201,13 +201,13 @@ preventNull(checkStringNotEmpty())
 selectValue(Math.random(), checkNumberGT(0.5))
 ```
 
-[API Docs](https://passfolio.github.io/react-validatables/)
+[API Docs](https://typescript-oss.github.io/react-validatables/)
 
 ## Thanks
 
 Thanks for checking it out.  Feel free to create issues or otherwise provide feedback.
 
-Be sure to check out our other [Open Source @ Passfolio](https://github.com/Passfolio) projects as well.
+Be sure to check out our other [TypeScript OSS](https://github.com/TypeScript-OSS) projects as well.
 
 <!-- Definitions -->
 
