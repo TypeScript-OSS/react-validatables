@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
@@ -77,8 +78,8 @@ describe('checkAllOf', () => {
       const myBinding = useBinding(() => '', { id: 'myBinding' });
 
       let numResets = 0;
-      const wrapValidator = (checker: ValidationChecker<string>): ValidationCheckerFunction<string> =>
-        jest.fn(async (value, args) => {
+      const wrapValidator = (checker: ValidationChecker<string>) =>
+        jest.fn<ValidationCheckerFunction<string>>(async (value, args) => {
           await sleep(10);
           if (args.wasReset()) {
             numResets += 1;
