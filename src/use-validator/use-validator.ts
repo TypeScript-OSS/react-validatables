@@ -1,5 +1,5 @@
 import type { ReadonlyBinding } from 'react-bindings';
-import { useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
+import { pickLimiterOptions, useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
 import type { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
 import { useDerivedWaitable } from 'react-waitables';
 
@@ -33,21 +33,17 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     dependencies: DependenciesT,
     args: ValidationCheckerArgs
   ) => TypeOrPromisedType<ValidationChecker<InferRequiredWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
-  {
+  args: UseValidatorArgs = {}
+): Validator => {
+  const {
     id = 'validator',
     deps,
     disabledUntil: disabledUntilBindings,
     disabledWhile: disabledWhileBindings,
-    disabledWhileUnmodified: disabledWhileUnmodifiedBindings,
-    // LimiterOptions
-    limitMSec,
-    limitMode,
-    limitType,
-    priority,
-    queue
-  }: UseValidatorArgs = {}
-): Validator => {
-  const limiterOptions = { limitMSec, limitMode, limitType, priority, queue };
+    disabledWhileUnmodified: disabledWhileUnmodifiedBindings
+  } = args;
+
+  const limiterOptions = pickLimiterOptions(args);
 
   /** If any of these bindings are falsey, this validator is disabled */
   const disabledUntil = disabledUntilBindings !== undefined ? normalizeAsArray(disabledUntilBindings) : emptyBindingsArray;
