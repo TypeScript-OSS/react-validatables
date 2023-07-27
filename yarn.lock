@@ -4587,10 +4587,10 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-waitables@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.9.2.tgz#e7d88917af106c35c4f66df0e61709d53bf7faa4"
-  integrity sha512-QoMij4tzmgFyW3oPSMu7VaLj+/Wup6oz0p8Nb6DBvjiAE9Gi0nO9cr5iZI+GPUQCrkp5RCU9+M8BRY3Rqe1OGw==
+react-waitables@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/react-waitables/-/react-waitables-1.10.0.tgz#b707781a92208ef6d48e41096a1d6e8ffc04aa57"
+  integrity sha512-PBjfVVIUFYzJxNmNV0d73jqvYoXbeI5b2lR4bjX/PDY1fzkd2CkCuFOBKaXHbipzWMpT6TXheiwqTJQK/3kekQ==
   dependencies:
     client-run-queue "^2.2.0"
     is-promise "^4.0.0"
