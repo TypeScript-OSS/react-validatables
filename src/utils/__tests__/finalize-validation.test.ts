@@ -53,9 +53,7 @@ describe('finalizeValidation', () => {
         b.set('world');
 
         for (let index = 0; index < 10; index += 1) {
-          setTimeout(() => {
-            a.set(`hello${index}`);
-          }, index * 10 + 10);
+          setTimeout(() => a.set(`hello${index}`), index * 10 + 10);
         }
 
         const result2 = await new Promise((resolve) => {
