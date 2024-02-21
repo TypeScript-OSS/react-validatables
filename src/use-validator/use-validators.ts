@@ -4,5 +4,5 @@ import { useValidator } from './use-validator';
 
 /** A short-form of useValidator that can be used when simply combining multiple validators, such as for creating a form validator from a
  * collection of field validators */
-export const useValidators = (validators: Array<Validator | undefined>, args: UseValidatorArgs = {}) =>
+export const useValidators = (validators: Array<Validator | undefined>, args: UseValidatorArgs<Array<Validator | undefined>> = {}) =>
   useValidator(validators, (validators) => validators, args);

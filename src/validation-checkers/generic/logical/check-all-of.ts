@@ -95,9 +95,12 @@ export const checkValidity = <T>(
   checker: ValidationChecker<T>,
   value: T,
   args: ValidationCheckerArgs
-): TypeOrPromisedType<ValidationResult> =>
-  typeof checker === 'function'
-    ? checker(value, args)
-    : Array.isArray(checker)
-    ? checkValidity<T>(checkAllOf<T>(checker), value, args)
-    : checker;
+): TypeOrPromisedType<ValidationResult> => {
+  if (typeof checker === 'function') {
+    return checker(value, args);
+  } else if (Array.isArray(checker)) {
+    return checkValidity<T>(checkAllOf<T>(checker), value, args);
+  } else {
+    return checker;
+  }
+};

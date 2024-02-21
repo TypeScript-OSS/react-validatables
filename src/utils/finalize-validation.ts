@@ -134,23 +134,28 @@ export const finalizeValidation = <FieldBindingsT extends MutableBindingDependen
       return undefined;
     }
 
-    // If the validator is already ready, trigger the callbacks right away
-    let validationResult = formValidator.value.get();
-    if (validationResult !== undefined) {
-      return triggerCallbacks(validationResult);
-    }
+    formValidator.setIsFinalizing(true);
+    try {
+      // If the validator is already ready, trigger the callbacks right away
+      let validationResult = formValidator.value.get();
+      if (validationResult !== undefined) {
+        return triggerCallbacks(validationResult);
+      }
 
-    // Otherwise wait for the result.  Because we call triggerChangeListeners on the unmodified bindings above, one or more resets may occur
-    // on the validator, which we want to ignore
-    const waitResult = await formValidator.wait({ continueWaitingOnReset: () => !wasCanceled });
+      // Otherwise wait for the result.  Because we call triggerChangeListeners on the unmodified bindings above, one or more resets may occur
+      // on the validator, which we want to ignore
+      const waitResult = await formValidator.wait({ continueWaitingOnReset: () => !wasCanceled });
 
-    if (waitResult === 'failure') {
-      return undefined;
-    }
+      if (waitResult === 'failure') {
+        return undefined;
+      }
 
-    validationResult = formValidator.value.get();
-    if (validationResult !== undefined) {
-      return triggerCallbacks(validationResult);
+      validationResult = formValidator.value.get();
+      if (validationResult !== undefined) {
+        return triggerCallbacks(validationResult);
+      }
+    } finally {
+      formValidator.setIsFinalizing(false);
     }
 
     return undefined;

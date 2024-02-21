@@ -5,6 +5,9 @@ import type { ValidationResult } from './validation-result';
 /** A validator is a waitable that produces a `ValidationResult`, indicating either validity or a problem, if all of its dependencies are
  * loaded (or if the validator is disabled). */
 export interface Validator extends Waitable<ValidationResult> {
+  /** A marker indicating that this is a validator type */
+  isValidator: true;
+
   /** Returns `true` if the validator is disabled, in which case it will always result in "validity" */
   isDisabled: () => boolean;
   /**
@@ -14,4 +17,7 @@ export interface Validator extends Waitable<ValidationResult> {
    * Setting a defined value overrides.  Setting `undefined`, clears the override, going back to the calculated state.
    */
   setDisabledOverride: (disabled: boolean | undefined) => void;
+
+  /** Sets the validator as currently finalizing or not */
+  setIsFinalizing: (isFinalizing: boolean) => void;
 }

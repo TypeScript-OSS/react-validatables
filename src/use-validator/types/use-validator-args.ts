@@ -1,7 +1,10 @@
 import type { DependencyList } from 'react';
 import type { BindingArrayDependencies, LimiterOptions, ReadonlyBinding } from 'react-bindings';
+import type { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
 
-export interface UseValidatorArgs extends LimiterOptions {
+import type { ValidationChecker, ValidationCheckerArgs } from '../../validator/types/validation-checker';
+
+export interface UseValidatorArgs<DependenciesT extends WaitableDependencies> extends LimiterOptions {
   /** A technical, but human-readable ID, which isn't guaranteed to be unique */
   id?: string;
   /** On a rerender, deps changes are treated like hard reset bindings changes. */
@@ -25,4 +28,11 @@ export interface UseValidatorArgs extends LimiterOptions {
    * on bindings don't trigger change callbacks.
    */
   disabledWhileUnmodified?: ReadonlyBinding | BindingArrayDependencies;
+
+  /** Extra validation that is only performed during finalization (see `finalizeValidation`) */
+  extraFinalizationCheckers?: (
+    dependencyValues: InferRequiredWaitableAndBindingValueTypes<DependenciesT>,
+    dependencies: DependenciesT,
+    args: ValidationCheckerArgs
+  ) => TypeOrPromisedType<ValidationChecker<InferRequiredWaitableAndBindingValueTypes<DependenciesT>> | undefined>;
 }

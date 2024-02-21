@@ -1,7 +1,7 @@
-import type { ReadonlyBinding } from 'react-bindings';
-import { pickLimiterOptions, useBinding, useCallbackRef, useDerivedBinding } from 'react-bindings';
+import type { EmptyObject, ReadonlyBinding } from 'react-bindings';
+import { isBinding, pickLimiterOptions, useBinding, useBindingEffect, useCallbackRef, useDerivedBinding } from 'react-bindings';
 import type { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
-import { useDerivedWaitable } from 'react-waitables';
+import { isWaitable, useDerivedWaitable } from 'react-waitables';
 
 import { disabledState, validState } from '../consts/basic-validation-results';
 import { normalizeAsArray } from '../internal-utils/array-like';
@@ -9,11 +9,13 @@ import { checkValidity } from '../validation-checkers/generic/logical/check-all-
 import type { ValidationChecker, ValidationCheckerArgs } from '../validator/types/validation-checker';
 import type { ValidationResult } from '../validator/types/validation-result';
 import type { Validator } from '../validator/types/validator';
+import { isValidator } from '../validator/utils/is-validator';
 import { areAnyBindingsFalsey } from './internal/are-any-bindings-falsey';
 import { areAnyBindingsTruthy } from './internal/are-any-bindings-truthy';
 import type { UseValidatorArgs } from './types/use-validator-args';
 
 const emptyBindingsArray = Object.freeze([]) as unknown as Array<ReadonlyBinding | undefined>;
+const emptyDependencies = Object.freeze({} as EmptyObject);
 
 /**
  * A validator is a waitable that produces a `ValidationResult`, indicating either validity or a problem, if all of its dependencies are
@@ -33,14 +35,15 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     dependencies: DependenciesT,
     args: ValidationCheckerArgs
   ) => TypeOrPromisedType<ValidationChecker<InferRequiredWaitableAndBindingValueTypes<DependenciesT>> | undefined>,
-  args: UseValidatorArgs = {}
+  args: UseValidatorArgs<DependenciesT> = {}
 ): Validator => {
   const {
     id = 'validator',
     deps,
     disabledUntil: disabledUntilBindings,
     disabledWhile: disabledWhileBindings,
-    disabledWhileUnmodified: disabledWhileUnmodifiedBindings
+    disabledWhileUnmodified: disabledWhileUnmodifiedBindings,
+    extraFinalizationCheckers
   } = args;
 
   const limiterOptions = pickLimiterOptions(args);
@@ -81,7 +84,9 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
     return false;
   });
 
-  return useDerivedWaitable(
+  const isFinalizing = useBinding(() => false, { id: 'isFinalizing', detectChanges: true });
+
+  const outputWaitable = useDerivedWaitable(
     dependencies,
     async (values, dependencies, _setFailure, wasReset): Promise<ValidationResult | undefined> => {
       if (wasReset()) {
@@ -99,8 +104,18 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
         return undefined;
       }
 
+      const resolvedExtraFinalizationCheckers = isFinalizing.get()
+        ? await extraFinalizationCheckers?.(values, dependencies, args)
+        : undefined;
+
       if (checkers !== undefined) {
-        return checkValidity(checkers, values, args);
+        return checkValidity(
+          resolvedExtraFinalizationCheckers !== undefined ? [checkers, resolvedExtraFinalizationCheckers] : checkers,
+          values,
+          args
+        );
+      } else if (resolvedExtraFinalizationCheckers !== undefined) {
+        return checkValidity(resolvedExtraFinalizationCheckers, values, args);
       } else {
         return validState;
       }
@@ -109,12 +124,37 @@ export const useValidator = <DependenciesT extends WaitableDependencies>(
       id,
       deps,
       addFields: () => ({
+        isValidator: true as const,
         isDisabled,
-        setDisabledOverride: (disabled: boolean | undefined) => disabledOverride.set(disabled)
+        setDisabledOverride: (disabled: boolean | undefined) => disabledOverride.set(disabled),
+        setIsFinalizing: isFinalizing.set
       }),
       hardResetBindings: isDisabledBinding,
       defaultValue: () => (isDisabled() ? disabledState : undefined),
       ...limiterOptions
     }
   );
+
+  useBindingEffect(
+    isFinalizing,
+    (isFinalizing) => {
+      const isNonNamedDependencies = Array.isArray(dependencies) || isWaitable(dependencies) || isBinding(dependencies);
+      const nonNamedDependencies = isNonNamedDependencies ? dependencies : undefined;
+      const namedDependencies = isNonNamedDependencies ? undefined : dependencies;
+      const allDependencies = isNonNamedDependencies
+        ? normalizeAsArray(nonNamedDependencies)
+        : Object.values(namedDependencies ?? emptyDependencies);
+      const allValidators = allDependencies.filter((dep) => isValidator(dep)) as Validator[];
+      for (const validator of allValidators) {
+        validator.setIsFinalizing(isFinalizing);
+      }
+
+      if (isFinalizing && extraFinalizationCheckers !== undefined) {
+        outputWaitable.reset('hard');
+      }
+    },
+    { limitType: 'none' }
+  );
+
+  return outputWaitable;
 };
