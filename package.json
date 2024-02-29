@@ -1,6 +1,6 @@
 {
   "name": "react-validatables",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Validation tools for React built on react-waitables",
   "keywords": [
     "bindings",
@@ -38,19 +38,19 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "client-run-queue": "^2.2.1",
-    "react-bindings": "^1.15.1",
-    "react-waitables": "^1.11.2"
+    "client-run-queue": "^2.2.2",
+    "react-bindings": "^1.16.0",
+    "react-waitables": "^2.1.0"
   },
   "devDependencies": {
     "@jest/types": "^29.6.3",
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^29.5.12",
-    "@types/react": "18.2.57",
+    "@types/react": "18.2.60",
     "@types/react-dom": "18.2.19",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "8.56.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -60,7 +60,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "i18next": "^23.9.0",
+    "i18next": "^23.10.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "madge": "6.1.0",
@@ -69,7 +69,7 @@
     "react-dom": "18.2.0",
     "trash-cli": "5.0.0",
     "ts-jest": "^29.1.2",
-    "typedoc": "^0.25.8",
+    "typedoc": "^0.25.9",
     "typescript": "5.3.3"
   }
 }
