@@ -1,6 +1,6 @@
 import { makeConstBinding } from 'react-bindings';
 
-import { extractBindingDependencyValues } from '../extract-binding-dependency-values';
+import { extractBindingDependencyValues } from '../extract-binding-dependency-values.js';
 
 describe('extractBindingDependencyValues', () => {
   it('undefined bindings should work', () => {

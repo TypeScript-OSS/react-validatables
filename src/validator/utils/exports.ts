@@ -1,1 +1,1 @@
-export * from './resolve-validation-error';
+export * from './resolve-validation-error.js';

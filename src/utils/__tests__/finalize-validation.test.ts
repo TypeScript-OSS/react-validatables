@@ -1,10 +1,11 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding, useDerivedBinding } from 'react-bindings';
 
-import { runInDom, sleep } from '../../__test_dependency__';
-import { useValidator } from '../../use-validator/use-validator';
-import { checkStringNotEmpty } from '../../validation-checkers/string/string-length';
-import { finalizeValidation } from '../finalize-validation';
+import { runInDom } from '../../__test_dependency__/run-in-dom.js';
+import { sleep } from '../../__test_dependency__/sleep.js';
+import { useValidator } from '../../use-validator/use-validator.js';
+import { checkStringNotEmpty } from '../../validation-checkers/string/string-length.js';
+import { finalizeValidation } from '../finalize-validation.js';
 
 describe('finalizeValidation', () => {
   it('should work', () =>

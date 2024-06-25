@@ -1,16 +1,16 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../__test_dependency__';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { useValidator } from '../../../use-validator/use-validator';
+import { runInDom } from '../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { useValidator } from '../../../use-validator/use-validator.js';
 import {
   checkStringAtLeastChars,
   checkStringAtMostChars,
   checkStringEmpty,
   checkStringLength,
   checkStringNotEmpty
-} from '../string-length';
+} from '../string-length.js';
 
 describe('checkStringEmpty', () => {
   it('should work with single values', () =>

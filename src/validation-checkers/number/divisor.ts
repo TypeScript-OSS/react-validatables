@@ -1,9 +1,9 @@
 import type { SingleOrArray } from 'react-bindings';
 
-import { defaultValidationError } from '../../consts/default-validation-error';
+import { defaultValidationError } from '../../consts/default-validation-error.js';
 import type { ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import type { ValidationError } from '../../validator/types/validation-error';
-import { checkIf } from '../generic/check-if';
+import { checkIf } from '../generic/check-if.js';
 
 /** Results in "validity" for any number evenly divisible by any of the specified divisors */
 export const checkNumberDivisibleBy = (

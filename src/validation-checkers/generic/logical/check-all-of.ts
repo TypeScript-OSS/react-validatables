@@ -1,14 +1,14 @@
 import type { TFunction } from 'i18next';
 import type { TypeOrPromisedType } from 'react-waitables';
 
-import { validState } from '../../../consts/basic-validation-results';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../consts/logical-validation-checkers';
-import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
+import { validState } from '../../../consts/basic-validation-results.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../consts/logical-validation-checkers.js';
+import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions.js';
 import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
-import { resolveValidationError } from '../../../validator/utils/resolve-validation-error';
+import { resolveValidationError } from '../../../validator/utils/resolve-validation-error.js';
 
 /**
  * Requires that all of the specified validators are satisfied.

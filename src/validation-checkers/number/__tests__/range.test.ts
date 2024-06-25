@@ -1,10 +1,10 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../__test_dependency__';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { useValidator } from '../../../use-validator/use-validator';
-import { checkNumberGT, checkNumberGTE, checkNumberLT, checkNumberLTE } from '../range';
+import { runInDom } from '../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { useValidator } from '../../../use-validator/use-validator.js';
+import { checkNumberGT, checkNumberGTE, checkNumberLT, checkNumberLTE } from '../range.js';
 
 describe('checkNumberGT', () => {
   it('should work', () =>

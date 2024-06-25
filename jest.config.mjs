@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   preset: 'ts-jest',
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   testEnvironment: 'jsdom',
@@ -8,5 +8,8 @@ module.exports = {
       isolatedModules: true,
       useESM: true
     }
+  },
+  moduleNameMapper: {
+    '(.+)\\.js': '$1'
   }
 };

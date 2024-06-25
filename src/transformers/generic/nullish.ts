@@ -1,7 +1,7 @@
-import { validState } from '../../consts/basic-validation-results';
-import { defaultValidationError } from '../../consts/default-validation-error';
-import { alwaysValid } from '../../validation-checkers/always';
-import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of';
+import { validState } from '../../consts/basic-validation-results.js';
+import { defaultValidationError } from '../../consts/default-validation-error.js';
+import { alwaysValid } from '../../validation-checkers/always.js';
+import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of.js';
 import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import type { ValidationError } from '../../validator/types/validation-error';
 

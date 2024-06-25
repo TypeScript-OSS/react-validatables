@@ -1,12 +1,12 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../__test_dependency__';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { selectValue } from '../../../transformers/generic/select-value';
-import { useValidator } from '../../../use-validator/use-validator';
-import { checkConditionally } from '../check-conditionally';
-import { checkIf } from '../check-if';
+import { runInDom } from '../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { selectValue } from '../../../transformers/generic/select-value.js';
+import { useValidator } from '../../../use-validator/use-validator.js';
+import { checkConditionally } from '../check-conditionally.js';
+import { checkIf } from '../check-if.js';
 
 describe('checkConditionally', () => {
   it('should work', () =>

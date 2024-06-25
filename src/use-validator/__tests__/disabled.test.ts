@@ -1,10 +1,10 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding, useConstBinding } from 'react-bindings';
 
-import { runInDom } from '../../__test_dependency__';
-import { changeStringTrim } from '../../transformers/string/change-string-trim';
-import { checkStringNotEmpty } from '../../validation-checkers/string/string-length';
-import { useValidator } from '../use-validator';
+import { runInDom } from '../../__test_dependency__/run-in-dom.js';
+import { changeStringTrim } from '../../transformers/string/change-string-trim.js';
+import { checkStringNotEmpty } from '../../validation-checkers/string/string-length.js';
+import { useValidator } from '../use-validator.js';
 
 describe('useValidator', () => {
   it('if disabled should always return valid', () =>

@@ -1,3 +1,3 @@
-export * from './regex';
-export * from './string-contains';
-export * from './string-length';
+export * from './regex.js';
+export * from './string-contains.js';
+export * from './string-length.js';

@@ -1,2 +1,2 @@
-export * from './types/exports';
-export * from './utils/exports';
+export * from './types/exports.js';
+export * from './utils/exports.js';

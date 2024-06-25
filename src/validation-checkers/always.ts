@@ -1,5 +1,5 @@
-import { validState } from '../consts/basic-validation-results';
-import { defaultValidationError } from '../consts/default-validation-error';
+import { validState } from '../consts/basic-validation-results.js';
+import { defaultValidationError } from '../consts/default-validation-error.js';
 import type { ValidationCheckerFunction } from '../validator/types/validation-checker';
 import type { ValidationError } from '../validator/types/validation-error';
 

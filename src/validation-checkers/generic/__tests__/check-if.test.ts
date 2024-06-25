@@ -1,10 +1,10 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../__test_dependency__';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { useValidator } from '../../../use-validator/use-validator';
-import { checkIf } from '../check-if';
+import { runInDom } from '../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { useValidator } from '../../../use-validator/use-validator.js';
+import { checkIf } from '../check-if.js';
 
 describe('checkIf', () => {
   it('should work', () =>

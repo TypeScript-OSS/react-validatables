@@ -1,12 +1,12 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../../__test_dependency__';
-import { defaultValidationError } from '../../../../consts/default-validation-error';
-import { useValidator } from '../../../../use-validator/use-validator';
-import { checkStringEmpty } from '../../../string/string-length';
-import { checkEquals } from '../../equals';
-import { checkNoneOf } from '../check-none-of';
+import { runInDom } from '../../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../../consts/default-validation-error.js';
+import { useValidator } from '../../../../use-validator/use-validator.js';
+import { checkStringEmpty } from '../../../string/string-length.js';
+import { checkEquals } from '../../equals.js';
+import { checkNoneOf } from '../check-none-of.js';
 
 describe('checkNoneOf', () => {
   it('should work', () =>

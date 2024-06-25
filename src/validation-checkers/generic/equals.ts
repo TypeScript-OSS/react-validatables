@@ -1,9 +1,9 @@
 import type { SingleOrArray } from 'react-bindings';
 
-import { defaultValidationError } from '../../consts/default-validation-error';
+import { defaultValidationError } from '../../consts/default-validation-error.js';
 import type { ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import type { ValidationError } from '../../validator/types/validation-error';
-import { checkIf } from './check-if';
+import { checkIf } from './check-if.js';
 
 /** Results in "validity" if a given value equals, using `===`, any of the specified values. */
 export const checkEquals = <T>(

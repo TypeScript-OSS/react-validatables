@@ -1,1 +1,1 @@
-export * from './mutable-binding-dependencies';
+export * from './mutable-binding-dependencies.js';

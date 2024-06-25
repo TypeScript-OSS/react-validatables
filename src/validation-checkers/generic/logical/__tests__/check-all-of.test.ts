@@ -2,17 +2,18 @@ import { jest } from '@jest/globals';
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom, sleep } from '../../../../__test_dependency__';
-import { validState } from '../../../../consts/basic-validation-results';
-import { defaultValidationError } from '../../../../consts/default-validation-error';
-import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../../consts/logical-validation-checkers';
-import { useValidator } from '../../../../use-validator/use-validator';
+import { runInDom } from '../../../../__test_dependency__/run-in-dom.js';
+import { sleep } from '../../../../__test_dependency__/sleep.js';
+import { validState } from '../../../../consts/basic-validation-results.js';
+import { defaultValidationError } from '../../../../consts/default-validation-error.js';
+import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../../consts/logical-validation-checkers.js';
+import { useValidator } from '../../../../use-validator/use-validator.js';
 import type { ValidationChecker, ValidationCheckerFunction } from '../../../../validator/types/validation-checker';
 import type { ValidationResult } from '../../../../validator/types/validation-result';
-import { resolveValidationError } from '../../../../validator/utils/resolve-validation-error';
-import { checkStringNotEmpty } from '../../../string/string-length';
-import { checkEquals, checkNotEquals } from '../../equals';
-import { checkAllOf, checkValidity } from '../check-all-of';
+import { resolveValidationError } from '../../../../validator/utils/resolve-validation-error.js';
+import { checkStringNotEmpty } from '../../../string/string-length.js';
+import { checkEquals, checkNotEquals } from '../../equals.js';
+import { checkAllOf, checkValidity } from '../check-all-of.js';
 
 describe('checkAllOf', () => {
   it('should work', () =>

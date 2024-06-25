@@ -1,1 +1,1 @@
-export * from './use-validator-args';
+export * from './use-validator-args.js';

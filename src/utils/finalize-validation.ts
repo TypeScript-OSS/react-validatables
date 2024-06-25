@@ -3,10 +3,10 @@ import { isBinding, lockBindingsAndDo } from 'react-bindings';
 import type { InferOptionalWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
 import { isWaitable } from 'react-waitables';
 
-import { normalizeAsArray } from '../internal-utils/array-like';
-import { extractBindingDependencyValues } from '../internal-utils/extract-binding-dependency-values';
-import { extractOptionalWaitableDependencyValues } from '../internal-utils/extract-waitable-dependency-values';
-import { getTypedKeys } from '../internal-utils/get-typed-keys';
+import { normalizeAsArray } from '../internal-utils/array-like.js';
+import { extractBindingDependencyValues } from '../internal-utils/extract-binding-dependency-values.js';
+import { extractOptionalWaitableDependencyValues } from '../internal-utils/extract-waitable-dependency-values.js';
+import { getTypedKeys } from '../internal-utils/get-typed-keys.js';
 import type {
   MutableBindingArrayDependencies,
   MutableBindingDependencies,
@@ -95,7 +95,6 @@ export const finalizeValidation = <FieldBindingsT extends MutableBindingDependen
     wasCanceled = true;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const getAdditionalDependencyValues = () =>
     extractOptionalWaitableDependencyValues({ dependencies: additionalDependencies, namedDependencyKeys: namedAdditionalDependencyKeys });
 

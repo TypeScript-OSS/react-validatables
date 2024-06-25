@@ -1,2 +1,2 @@
-export * from './generic/exports';
-export * from './string/exports';
+export * from './generic/exports.js';
+export * from './string/exports.js';

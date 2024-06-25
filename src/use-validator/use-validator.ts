@@ -3,15 +3,15 @@ import { isBinding, pickLimiterOptions, useBinding, useBindingEffect, useCallbac
 import type { InferRequiredWaitableAndBindingValueTypes, TypeOrPromisedType, WaitableDependencies } from 'react-waitables';
 import { isWaitable, useDerivedWaitable } from 'react-waitables';
 
-import { disabledState, validState } from '../consts/basic-validation-results';
-import { normalizeAsArray } from '../internal-utils/array-like';
-import { checkValidity } from '../validation-checkers/generic/logical/check-all-of';
+import { disabledState, validState } from '../consts/basic-validation-results.js';
+import { normalizeAsArray } from '../internal-utils/array-like.js';
+import { checkValidity } from '../validation-checkers/generic/logical/check-all-of.js';
 import type { ValidationChecker, ValidationCheckerArgs } from '../validator/types/validation-checker';
 import type { ValidationResult } from '../validator/types/validation-result';
 import type { Validator } from '../validator/types/validator';
-import { isValidator } from '../validator/utils/is-validator';
-import { areAnyBindingsFalsey } from './internal/are-any-bindings-falsey';
-import { areAnyBindingsTruthy } from './internal/are-any-bindings-truthy';
+import { isValidator } from '../validator/utils/is-validator.js';
+import { areAnyBindingsFalsey } from './internal/are-any-bindings-falsey.js';
+import { areAnyBindingsTruthy } from './internal/are-any-bindings-truthy.js';
 import type { UseValidatorArgs } from './types/use-validator-args';
 
 const emptyBindingsArray = Object.freeze([]) as unknown as Array<ReadonlyBinding | undefined>;

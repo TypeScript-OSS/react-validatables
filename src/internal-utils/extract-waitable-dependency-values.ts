@@ -36,7 +36,6 @@ export const extractOptionalWaitableDependencyValues = <DependenciesT extends Wa
         ) as InferOptionalWaitableAndBindingValueTypes<DependenciesT>
       );
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return makeOutput(extractValue(dependencies, inout) as InferOptionalWaitableAndBindingValueTypes<DependenciesT>);
     }
   } else if (namedDependencyKeys !== undefined) {
@@ -46,10 +45,8 @@ export const extractOptionalWaitableDependencyValues = <DependenciesT extends Wa
       namedValues[key] = extractValue((dependencies as NamedWaitableDependencies)[key], inout);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return makeOutput(namedValues as InferOptionalWaitableAndBindingValueTypes<DependenciesT>);
   } else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return makeOutput(emptyValues as InferOptionalWaitableAndBindingValueTypes<DependenciesT>);
   }
 };

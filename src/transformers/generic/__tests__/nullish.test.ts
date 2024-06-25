@@ -1,11 +1,11 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../__test_dependency__';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { useValidator } from '../../../use-validator/use-validator';
-import { checkStringNotEmpty } from '../../../validation-checkers/string/string-length';
-import { allowNull, allowNullish, allowUndefined, preventNull, preventNullish, preventUndefined } from '../nullish';
+import { runInDom } from '../../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { useValidator } from '../../../use-validator/use-validator.js';
+import { checkStringNotEmpty } from '../../../validation-checkers/string/string-length.js';
+import { allowNull, allowNullish, allowUndefined, preventNull, preventNullish, preventUndefined } from '../nullish.js';
 
 describe('allowNull', () => {
   it('should work', () =>

@@ -1,14 +1,14 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../../../__test_dependency__';
-import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../../consts/logical-validation-checkers';
-import { useValidator } from '../../../../use-validator/use-validator';
+import { runInDom } from '../../../../__test_dependency__/run-in-dom.js';
+import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../../consts/logical-validation-checkers.js';
+import { useValidator } from '../../../../use-validator/use-validator.js';
 import type { ValidationResult } from '../../../../validator/types/validation-result';
-import { resolveValidationError } from '../../../../validator/utils/resolve-validation-error';
-import { checkStringEmpty } from '../../../string/string-length';
-import { checkEquals } from '../../equals';
-import { checkAnyOf } from '../check-any-of';
+import { resolveValidationError } from '../../../../validator/utils/resolve-validation-error.js';
+import { checkStringEmpty } from '../../../string/string-length.js';
+import { checkEquals } from '../../equals.js';
+import { checkAnyOf } from '../check-any-of.js';
 
 describe('checkAnyOf', () => {
   it('should work', () =>

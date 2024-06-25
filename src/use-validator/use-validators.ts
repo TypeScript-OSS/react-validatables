@@ -1,6 +1,6 @@
 import type { Validator } from '../validator/types/validator';
 import type { UseValidatorArgs } from './types/use-validator-args';
-import { useValidator } from './use-validator';
+import { useValidator } from './use-validator.js';
 
 /** A short-form of useValidator that can be used when simply combining multiple validators, such as for creating a form validator from a
  * collection of field validators */

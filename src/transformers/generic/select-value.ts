@@ -1,4 +1,4 @@
-import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of';
+import { checkValidity } from '../../validation-checkers/generic/logical/check-all-of.js';
 import type { ValidationChecker, ValidationCheckerArgs, ValidationCheckerFunction } from '../../validator/types/validation-checker';
 
 /** Selects a different value to continue validation with */

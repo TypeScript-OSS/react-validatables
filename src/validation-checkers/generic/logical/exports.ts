@@ -1,3 +1,3 @@
-export * from './check-all-of';
-export * from './check-any-of';
-export * from './check-none-of';
+export * from './check-all-of.js';
+export * from './check-any-of.js';
+export * from './check-none-of.js';

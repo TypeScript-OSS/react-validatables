@@ -1,10 +1,10 @@
-import { validState } from '../../../consts/basic-validation-results';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
+import { validState } from '../../../consts/basic-validation-results.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions.js';
 import type { ValidationChecker, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
-import { checkValidity } from './check-all-of';
+import { checkValidity } from './check-all-of.js';
 
 /**
  * Requires that none of the specified validators are satisfied.

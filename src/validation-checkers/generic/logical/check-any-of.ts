@@ -1,14 +1,14 @@
 import type { TFunction } from 'i18next';
 
-import { validState } from '../../../consts/basic-validation-results';
-import { defaultValidationError } from '../../../consts/default-validation-error';
-import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../consts/logical-validation-checkers';
-import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions';
+import { validState } from '../../../consts/basic-validation-results.js';
+import { defaultValidationError } from '../../../consts/default-validation-error.js';
+import { USE_FIRST_ERROR, USE_LAST_ERROR } from '../../../consts/logical-validation-checkers.js';
+import { runAllAfterInteractions } from '../../../internal-utils/run-all-after-interactions.js';
 import type { ValidationChecker, ValidationCheckerFunction } from '../../../validator/types/validation-checker';
 import type { ValidationError } from '../../../validator/types/validation-error';
 import type { ValidationResult } from '../../../validator/types/validation-result';
-import { resolveValidationError } from '../../../validator/utils/resolve-validation-error';
-import { checkValidity } from './check-all-of';
+import { resolveValidationError } from '../../../validator/utils/resolve-validation-error.js';
+import { checkValidity } from './check-all-of.js';
 
 /**
  * Requires that at least one of the specified validators are satisfied.

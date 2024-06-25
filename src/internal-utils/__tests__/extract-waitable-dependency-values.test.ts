@@ -2,8 +2,9 @@ import { waitFor } from '@testing-library/react';
 import { makeConstBinding } from 'react-bindings';
 import { useWaitableFunction } from 'react-waitables';
 
-import { runInDom, sleep } from '../../__test_dependency__';
-import { extractOptionalWaitableDependencyValues } from '../extract-waitable-dependency-values';
+import { runInDom } from '../../__test_dependency__/run-in-dom.js';
+import { sleep } from '../../__test_dependency__/sleep.js';
+import { extractOptionalWaitableDependencyValues } from '../extract-waitable-dependency-values.js';
 
 describe('extractOptionalWaitableDependencyValues', () => {
   it('undefined dependencies should work', () => {

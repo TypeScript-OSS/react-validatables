@@ -1,1 +1,1 @@
-export * from './finalize-validation';
+export * from './finalize-validation.js';

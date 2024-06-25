@@ -1,12 +1,12 @@
 import { waitFor } from '@testing-library/react';
 import { useBinding } from 'react-bindings';
 
-import { runInDom } from '../../__test_dependency__';
-import { defaultValidationError } from '../../consts/default-validation-error';
-import { changeStringTrim } from '../../transformers/string/change-string-trim';
-import { checkStringNotEmpty } from '../../validation-checkers/string/string-length';
-import { useValidator } from '../use-validator';
-import { useValidators } from '../use-validators';
+import { runInDom } from '../../__test_dependency__/run-in-dom.js';
+import { defaultValidationError } from '../../consts/default-validation-error.js';
+import { changeStringTrim } from '../../transformers/string/change-string-trim.js';
+import { checkStringNotEmpty } from '../../validation-checkers/string/string-length.js';
+import { useValidator } from '../use-validator.js';
+import { useValidators } from '../use-validators.js';
 
 describe('useValidators', () => {
   it('should combine validators using checkAllOf', () =>

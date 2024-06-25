@@ -1,7 +1,7 @@
-import { defaultValidationError } from '../../consts/default-validation-error';
+import { defaultValidationError } from '../../consts/default-validation-error.js';
 import type { ValidationCheckerFunction } from '../../validator/types/validation-checker';
 import type { ValidationError } from '../../validator/types/validation-error';
-import { checkIf } from '../generic/check-if';
+import { checkIf } from '../generic/check-if.js';
 
 /** Results in "validity" for any number greater than the specified value */
 export const checkNumberGT = (

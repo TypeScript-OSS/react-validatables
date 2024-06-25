@@ -1,2 +1,2 @@
-export * from './divisor';
-export * from './range';
+export * from './divisor.js';
+export * from './range.js';

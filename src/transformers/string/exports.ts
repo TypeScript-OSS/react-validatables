@@ -1,2 +1,2 @@
-export * from './change-case';
-export * from './change-string-trim';
+export * from './change-case.js';
+export * from './change-string-trim.js';
