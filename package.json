@@ -1,6 +1,6 @@
 {
   "name": "react-validatables",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Validation tools for React built on react-waitables",
   "keywords": [
     "bindings",
@@ -38,9 +38,9 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "client-run-queue": "^2.3.0",
-    "react-bindings": "^1.19.0",
-    "react-waitables": "^2.2.0"
+    "client-run-queue": "^2.3.1",
+    "react-bindings": "^1.19.1",
+    "react-waitables": "^2.2.1"
   },
   "devDependencies": {
     "@eslint/compat": "1.1.0",
