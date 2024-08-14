@@ -56,6 +56,7 @@ export const runAllAfterInteractions = <T>(
             }
             didResolve = true;
 
+            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
             reject(e);
           }
         });
