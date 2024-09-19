@@ -1,6 +1,6 @@
 {
   "name": "react-validatables",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "Validation tools for React built on react-waitables",
   "keywords": [
     "bindings",
@@ -42,37 +42,37 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "client-run-queue": "^2.3.3",
+    "client-run-queue": "^2.3.5",
     "react-bindings": "^1.19.5",
-    "react-waitables": "^2.3.0"
+    "react-waitables": "^2.3.3"
   },
   "devDependencies": {
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.9.0",
+    "@eslint/js": "9.10.0",
     "@jest/types": "^29.6.3",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/jest": "^29.5.12",
-    "@types/react": "18.3.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.13",
+    "@types/react": "18.3.7",
     "@types/react-dom": "18.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "esbuild": "0.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "esbuild": "0.23.1",
     "esbuild-plugin-tsc": "0.4.0",
-    "eslint": "9.9.0",
+    "eslint": "9.10.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-file-extension-in-import-ts": "2.1.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-file-extension-in-import-ts": "2.1.1",
+    "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-tsdoc": "^0.3.0",
     "glob": "11.0.0",
-    "i18next": "^23.12.3",
+    "i18next": "^23.15.1",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "madge": "8.0.0",
@@ -80,8 +80,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "trash-cli": "6.0.0",
-    "ts-jest": "^29.2.4",
-    "typedoc": "^0.26.5",
-    "typescript": "5.5.4"
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.7",
+    "typescript": "5.6.2"
   }
 }
